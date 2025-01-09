@@ -1,8 +1,19 @@
 import torch
+import torch.onnx
+import torch.nn as nn
+import torch.optim as optim
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
 import pickle
+
+# Create a simple linear regression model in PyTorch
+class LinearRegressor(nn.Module):
+    def __init__(self):
+        super(LinearRegressor, self).__init__()
+        self.fc = nn.Linear(3, 2)  # 3 inputs, 2 outputs
+
+    def forward(self, x):
+        return self.fc(x)
 
 def data_prep(filename):
     data = np.loadtxt(filename, delimiter=',')
@@ -29,33 +40,43 @@ def data_prep(filename):
     y_test = torch.tensor(y_test, dtype=torch.float32)
     return X_train, y_train, X_test, y_test, x_scaler, y_scaler
 
-def predict(model, X_test, output_scaler):
-    # Make predictions with the trained model
-    y_pred = model.predict(X_test)
+def train(model, X_train, y_train):
+    criterion = nn.MSELoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.01)
 
-    # Denormalize the predictions
-    y_pred_denormalized = output_scaler.inverse_transform(y_pred)
+    for epoch in range(1000):
+        predictions = model(X_train)
+        loss = criterion(predictions, y_train)
 
-    return y_pred_denormalized
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        if (epoch + 1) % 100 == 0:
+            print(f"Epoch [{epoch+1}/{1000}], Loss: {loss.item():.4f}")
 
 def __main__():
-    model = LinearRegression()
+    model = LinearRegressor()
     X_train, y_train, X_test, y_test, input_scaler, output_scaler = data_prep("data.csv")
-    model.fit(X_train, y_train)
-
-    # Make predictions and denormalize them
-    y_pred_denormalized = predict(model, X_test, output_scaler)
-
-    # Save the trained model and scalers
-    with open('linear_regression_model.pkl', 'wb') as f:
-        pickle.dump(model, f)
+    
+    train(model, X_train, y_train)
 
     with open('input_scaler.pkl', 'wb') as f:
         pickle.dump(input_scaler, f)
     with open('output_scaler.pkl', 'wb') as f:
         pickle.dump(output_scaler, f)
 
-    print("Predicted values (denormalized):", y_pred_denormalized)
+    # Export to ONNX
+    dummy_input = torch.randn(1, 3)  # Batch size = 1, input features = 3
+    torch.onnx.export(
+        model,
+        dummy_input,
+        "linear_regressor.onnx",
+        input_names=["input"],
+        output_names=["output"],
+        opset_version=11
+    )
+
+    print("Model exported to linear_regressor.onnx")
 
 
 if __name__=="__main__":
