@@ -18,10 +18,13 @@ public class input : MonoBehaviour
 {
 
     private int maxEpochAmount = 20;
+    private int maxBatchAmount = 256;
+    private int maxSampleAmount = 60000;
 
     [Header("Sliders")]
     [SerializeField] private Slider epochSlider;
-    // TODO: ADD BATCH AND SAMPLE SLIDERS
+    [SerializeField] private Slider batchSlider;
+    [SerializeField] private Slider sampleSlider;
 
     [Header("Output Texts")]
     [SerializeField] private TextMeshProUGUI energyConsumption = null;
@@ -29,14 +32,16 @@ public class input : MonoBehaviour
 
     [Header("Model")]
     [SerializeField] private NNModel modelAsset;
+    [SerializeField] private NNModel emissionsModelAsset;
     private Model model;
 
     private IWorker worker;
-    // private Scaler scaler;
-    private float mean;
-    private float std;
+    private IWorker emissionWorker;
+
     // input variables
     private float epochs = 1;
+    private float batch = 64;
+    private float sample = 10000;
 
     // output variables
     // private float energyVal = 0;
@@ -47,54 +52,72 @@ public class input : MonoBehaviour
     {
         model = ModelLoader.Load(modelAsset);
         worker = modelAsset.CreateWorker();
-        // readWeights();
-        // scaler = new Scaler();
-        mean = 11164.333333333334F;
-        std = 19659.05352079121F;
+        emissionWorker = emissionsModelAsset.CreateWorker();
 
     }
 
-    // private void readWeights()
-    // {
-    //     scaler = JsonUtility.FromJson<Scaler>("@./scaler.json");
-    // }
+    public void OnBatchChanged(float val)
+    {
+        batch = maxBatchAmount * val;
+    }
 
-    public void OnSliderChanged(float val)
+    public void OnEpochChanged(float val)
     {
         epochs = val*maxEpochAmount;
-        // energyConsumption.text = changedVal.ToString("0");
-        // float accTest = changedVal * 100;
-        // accuracy.text = accTest.ToString("0");
-        // switch(name)
-        // {
-        //     case "epoch":
-        //         epochs = value;
-        //         break;
-        // }
+    }
 
-        // CalculateOutput(changedVal);
+    public void OnSampleChanged(float val)
+    {
+        sample = val*maxSampleAmount;
     }
 
     public void CalculateOutput()
     {
         // epoch = (epoch - mean) / std;
 
-        Tensor inputs = new Tensor(1, 1, 1, 3, new float[] { epochs, 128.0F, 60000.0F });
+        Tensor inputs = new Tensor(1, 1, 1, 3, new float[] { epochs, batch, sample});
         worker.Execute(inputs);
         Tensor outputTensor = worker.PeekOutput();
-        float consump = outputTensor[0, 0, 0, 0]; // First output
+        // float consump = outputTensor[0, 0, 0, 0]; // First output
         float acc = outputTensor[0, 0, 0, 1]; // Second output
 
-        energyConsumption.text = consump.ToString("0.000");
-        accuracy.text = acc.ToString("0.000");
+        emissionWorker.Execute(inputs);
+        Tensor eOutput = emissionWorker.PeekOutput();
+        float consump = outputTensor[0,0,0,0];
+
+        // if (acc<0){
+        //     acc = acc * (-1);
+        // }
+
+        // acc = (acc - 0.34F)/ (0.9F - 0.34F);
+        acc =( 1 / (1+(Mathf.Exp(-1 * acc))))*100;
+        if (acc > 70)
+        {
+            accuracy.color = Color.green;
+        }
+        else if (acc >50)
+        {
+            accuracy.color = Color.yellow;
+        }
+        else
+        {
+            accuracy.color = Color.red;
+        }
+
+        consump = consump * 1000;
+        consump = consump * (sample/10000);
+        energyConsumption.text = consump.ToString("0.00");
+        accuracy.text = acc.ToString("0.00");
         // Dispose tensors to free memory
         inputs.Dispose();
         outputTensor.Dispose();
+        eOutput.Dispose();
     }
 
     void OnDestroy()
     {
         // Dispose the worker when the script is destroyed
         worker.Dispose();
+        emissionWorker.Dispose();
     }
 }

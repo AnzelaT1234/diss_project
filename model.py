@@ -10,18 +10,18 @@ import json
 class LinearRegressor(nn.Module):
     def __init__(self):
         super(LinearRegressor, self).__init__()
-        self.linear1 = nn.Linear(3, 2)  # 3 inputs, 2 outputs
-        # self.relu = nn.ReLU()
-        # self.linear2 = nn.Linear(16,8)
-        # self.linear3 = nn.Linear(8,1)
+        self.linear1 = nn.Linear(3, 16)  # 3 inputs, 2 outputs
+        self.relu = nn.ReLU()
+        self.linear2 = nn.Linear(16,8)
+        self.linear3 = nn.Linear(8,1)
         # self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.linear1(x)
-        # x = self.relu(x)
-        # x = self.linear2(x)
-        # x = self.relu(x)
-        # x = self.linear3(x)
+        x = self.relu(x)
+        x = self.linear2(x)
+        x = self.relu(x)
+        x = self.linear3(x)
         return x
 
 def data_prep(filename):
@@ -30,7 +30,7 @@ def data_prep(filename):
 
     X = data[:,:3]
 
-    y = data[:, 3:]
+    y = data[:, 3]
 
     test = int(0.2*len(X))
     X_train = X[test:,:]
@@ -50,7 +50,7 @@ def train(model, X_train, y_train):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-    for epoch in range(15000):
+    for epoch in range(8000):
         predictions = model(X_train)
         loss = criterion(predictions, y_train)
 
