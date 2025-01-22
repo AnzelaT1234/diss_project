@@ -81,15 +81,18 @@ public class input : MonoBehaviour
         // float consump = outputTensor[0, 0, 0, 0]; // First output
         float acc = outputTensor[0, 0, 0, 1]; // Second output
 
+        float e_epoch = (epochs-1)/(20-1);
+        float e_batch = (batch-64)/(256-64);
+        float e_sample = (sample-10000)/(60000-10000);
+        Tensor e_inputs = new Tensor(1, 1, 1, 3, new float[] { e_epoch, e_batch, e_sample});
         emissionWorker.Execute(inputs);
         Tensor eOutput = emissionWorker.PeekOutput();
-        float consump = outputTensor[0,0,0,0];
+        float consump = eOutput[0,0,0,0];
 
-        // if (acc<0){
-        //     acc = acc * (-1);
-        // }
+        float max_consump = 7.2470661900F;
+        float min_consump = 0.000025752939683F;
+        consump = (consump * (max_consump-min_consump)) + min_consump;
 
-        // acc = (acc - 0.34F)/ (0.9F - 0.34F);
         acc =( 1 / (1+(Mathf.Exp(-1 * acc))))*100;
         if (acc > 70)
         {
@@ -104,8 +107,8 @@ public class input : MonoBehaviour
             accuracy.color = Color.red;
         }
 
-        consump = consump * 1000;
-        consump = consump * (sample/10000);
+        // consump = consump * 1000;
+        // consump = consump * (sample/10000);
         energyConsumption.text = consump.ToString("0.00");
         accuracy.text = acc.ToString("0.00");
         // Dispose tensors to free memory
