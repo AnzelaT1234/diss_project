@@ -1,18 +1,10 @@
 using System.IO;
-// using System.Text.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Barracuda;
 using TMPro;
-
-
-public class Scaler
-{
-    public float mean {get ; set ;}
-    public float std {get ; set ;}
-}
 
 public class input : MonoBehaviour
 {
@@ -43,11 +35,6 @@ public class input : MonoBehaviour
     private float batch = 64;
     private float sample = 10000;
 
-    // output variables
-    // private float energyVal = 0;
-    // private float accuracyVal = 0;
-
-    // // Start is called before the first frame update
     void Start()
     {
         model = ModelLoader.Load(modelAsset);
@@ -107,8 +94,19 @@ public class input : MonoBehaviour
             accuracy.color = Color.red;
         }
 
-        // consump = consump * 1000;
-        // consump = consump * (sample/10000);
+        if (consump < 5000)
+        {
+            energyConsumption.color = Color.green;
+        }
+        else if (consump <15000)
+        {
+            energyConsumption.color = Color.yellow;
+        }
+        else
+        {
+            energyConsumption.color = Color.red;
+        }
+
         energyConsumption.text = consump.ToString("0.00");
         accuracy.text = acc.ToString("0.00");
         // Dispose tensors to free memory
