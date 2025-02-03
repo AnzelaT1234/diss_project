@@ -1003,8 +1003,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-<<<<<<< HEAD
-=======
+
 --- !u!1 &587852384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1275,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> v2-testing
 --- !u!1 &791410009
 GameObject:
   m_ObjectHideFlags: 0
