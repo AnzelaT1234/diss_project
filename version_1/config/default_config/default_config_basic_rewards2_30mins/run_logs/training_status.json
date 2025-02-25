@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740403939.602554,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740403939.602554,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 75807,
+                "file_path": "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToCustomer\\MoveToCustomer-75807.onnx",
+                "reward": -6.923076923076923,
+                "creation_time": 1740403939.862673,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToCustomer\\MoveToCustomer-75807.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 75807,
+            "file_path": "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToCustomer.onnx",
+            "reward": -6.923076923076923,
+            "creation_time": 1740403939.862673,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards2_30mins\\MoveToCustomer\\MoveToCustomer-75807.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

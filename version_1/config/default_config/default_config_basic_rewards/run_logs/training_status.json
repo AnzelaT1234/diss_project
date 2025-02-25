@@ -1,0 +1,51 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 10010,
+                "file_path": "config\\default_config\\default_config_basic_rewards\\MoveToCustomer\\MoveToCustomer-10010.onnx",
+                "reward": -4.639175257731959,
+                "creation_time": 1740394537.4229593,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards\\MoveToCustomer\\MoveToCustomer-10010.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10010,
+            "file_path": "config\\default_config\\default_config_basic_rewards\\MoveToCustomer.onnx",
+            "reward": -4.639175257731959,
+            "creation_time": 1740394537.4229593,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards\\MoveToCustomer\\MoveToCustomer-10010.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "config\\default_config\\default_config_basic_rewards\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740394537.5338123,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "config\\default_config\\default_config_basic_rewards\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740394537.5338123,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

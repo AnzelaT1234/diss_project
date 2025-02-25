@@ -1,0 +1,87 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 99948,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-99948.onnx",
+                "reward": -1033322.0957966204,
+                "creation_time": 1740311996.0321338,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-99948.pt"
+                ]
+            },
+            {
+                "steps": 149999,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-149999.onnx",
+                "reward": -1022151.6588483776,
+                "creation_time": 1740312715.289585,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-149999.pt"
+                ]
+            },
+            {
+                "steps": 199941,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-199941.onnx",
+                "reward": -1073118.021594542,
+                "creation_time": 1740313451.3004928,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-199941.pt"
+                ]
+            },
+            {
+                "steps": 249999,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-249999.onnx",
+                "reward": -1079423.5103058468,
+                "creation_time": 1740314185.5687466,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-249999.pt"
+                ]
+            },
+            {
+                "steps": 286749,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-286749.onnx",
+                "reward": -1068381.1738660575,
+                "creation_time": 1740314737.5986822,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-286749.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 286749,
+            "file_path": "results\\sror-with-step-punish-3-layers\\MoveToCustomer.onnx",
+            "reward": -1068381.1738660575,
+            "creation_time": 1740314737.5986822,
+            "auxillary_file_paths": [
+                "results\\sror-with-step-punish-3-layers\\MoveToCustomer\\MoveToCustomer-286749.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\sror-with-step-punish-3-layers\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740314737.7388396,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish-3-layers\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\sror-with-step-punish-3-layers\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740314737.7388396,
+            "auxillary_file_paths": [
+                "results\\sror-with-step-punish-3-layers\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\default_config\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740388566.3379078,
+                "auxillary_file_paths": [
+                    "results\\default_config\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\default_config\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740388566.3379078,
+            "auxillary_file_paths": [
+                "results\\default_config\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 34694,
+                "file_path": "results\\default_config\\MoveToCustomer\\MoveToCustomer-34694.onnx",
+                "reward": 805.8879797705289,
+                "creation_time": 1740388566.5273652,
+                "auxillary_file_paths": [
+                    "results\\default_config\\MoveToCustomer\\MoveToCustomer-34694.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 34694,
+            "file_path": "results\\default_config\\MoveToCustomer.onnx",
+            "reward": 805.8879797705289,
+            "creation_time": 1740388566.5273652,
+            "auxillary_file_paths": [
+                "results\\default_config\\MoveToCustomer\\MoveToCustomer-34694.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

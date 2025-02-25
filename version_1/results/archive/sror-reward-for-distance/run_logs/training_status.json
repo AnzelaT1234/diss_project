@@ -1,0 +1,87 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 149991,
+                "file_path": "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-149991.onnx",
+                "reward": 213.32299489621403,
+                "creation_time": 1740305374.8652341,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-149991.pt"
+                ]
+            },
+            {
+                "steps": 199987,
+                "file_path": "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-199987.onnx",
+                "reward": 207.54014240089168,
+                "creation_time": 1740306051.789134,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-199987.pt"
+                ]
+            },
+            {
+                "steps": 249960,
+                "file_path": "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-249960.onnx",
+                "reward": 208.46090856953947,
+                "creation_time": 1740306726.5384943,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-249960.pt"
+                ]
+            },
+            {
+                "steps": 299955,
+                "file_path": "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-299955.onnx",
+                "reward": 207.3763093880088,
+                "creation_time": 1740307409.72734,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-299955.pt"
+                ]
+            },
+            {
+                "steps": 343967,
+                "file_path": "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-343967.onnx",
+                "reward": 210.55709734011563,
+                "creation_time": 1740308073.354962,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-343967.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 343967,
+            "file_path": "results\\sror-reward-for-distance\\MoveToCustomer.onnx",
+            "reward": 210.55709734011563,
+            "creation_time": 1740308073.354962,
+            "auxillary_file_paths": [
+                "results\\sror-reward-for-distance\\MoveToCustomer\\MoveToCustomer-343967.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\sror-reward-for-distance\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740308073.2059383,
+                "auxillary_file_paths": [
+                    "results\\sror-reward-for-distance\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\sror-reward-for-distance\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740308073.2059383,
+            "auxillary_file_paths": [
+                "results\\sror-reward-for-distance\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

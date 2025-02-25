@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - table_tag
+  - goal_tag
+  - taking_order
+  - wall_tag
+  - served
+  - kit
+  - kit_wall
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,73 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 75272,
+                "file_path": "results\\train_final\\MoveToKitchen\\MoveToKitchen-75272.onnx",
+                "reward": -20348.796153675426,
+                "creation_time": 1740152132.004069,
+                "auxillary_file_paths": [
+                    "results\\train_final\\MoveToKitchen\\MoveToKitchen-75272.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 75272,
+            "file_path": "results\\train_final\\MoveToKitchen.onnx",
+            "reward": -20348.796153675426,
+            "creation_time": 1740152132.004069,
+            "auxillary_file_paths": [
+                "results\\train_final\\MoveToKitchen\\MoveToKitchen-75272.pt"
+            ]
+        }
+    },
+    "BringFood": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\train_final\\BringFood\\BringFood-0.onnx",
+                "reward": null,
+                "creation_time": 1740152132.330048,
+                "auxillary_file_paths": [
+                    "results\\train_final\\BringFood\\BringFood-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\train_final\\BringFood.onnx",
+            "reward": null,
+            "creation_time": 1740152132.330048,
+            "auxillary_file_paths": [
+                "results\\train_final\\BringFood\\BringFood-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 75252,
+                "file_path": "results\\train_final\\MoveToCustomer\\MoveToCustomer-75252.onnx",
+                "reward": null,
+                "creation_time": 1740152132.670475,
+                "auxillary_file_paths": [
+                    "results\\train_final\\MoveToCustomer\\MoveToCustomer-75252.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 75252,
+            "file_path": "results\\train_final\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1740152132.670475,
+            "auxillary_file_paths": [
+                "results\\train_final\\MoveToCustomer\\MoveToCustomer-75252.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

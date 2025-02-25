@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740414139.8159242,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740414139.8159242,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 154630,
+                "file_path": "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToCustomer\\MoveToCustomer-154630.onnx",
+                "reward": 1836.5,
+                "creation_time": 1740414140.0122602,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToCustomer\\MoveToCustomer-154630.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 154630,
+            "file_path": "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToCustomer.onnx",
+            "reward": 1836.5,
+            "creation_time": 1740414140.0122602,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards3-comb2\\MoveToCustomer\\MoveToCustomer-154630.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}
