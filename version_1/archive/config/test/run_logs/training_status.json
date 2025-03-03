@@ -1,0 +1,65 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 5499994,
+                "file_path": "config\\test\\MoveToCustomer\\MoveToCustomer-5499994.onnx",
+                "reward": 704.1857025840065,
+                "creation_time": 1740905718.359355,
+                "auxillary_file_paths": [
+                    "config\\test\\MoveToCustomer\\MoveToCustomer-5499994.pt"
+                ]
+            },
+            {
+                "steps": 5999958,
+                "file_path": "config\\test\\MoveToCustomer\\MoveToCustomer-5999958.onnx",
+                "reward": 679.5804875691732,
+                "creation_time": 1740906855.2564578,
+                "auxillary_file_paths": [
+                    "config\\test\\MoveToCustomer\\MoveToCustomer-5999958.pt"
+                ]
+            },
+            {
+                "steps": 6499994,
+                "file_path": "config\\test\\MoveToCustomer\\MoveToCustomer-6499994.onnx",
+                "reward": 712.3662334241366,
+                "creation_time": 1740907963.6840334,
+                "auxillary_file_paths": [
+                    "config\\test\\MoveToCustomer\\MoveToCustomer-6499994.pt"
+                ]
+            },
+            {
+                "steps": 6999994,
+                "file_path": "config\\test\\MoveToCustomer\\MoveToCustomer-6999994.onnx",
+                "reward": 696.1535708299324,
+                "creation_time": 1740909059.7372062,
+                "auxillary_file_paths": [
+                    "config\\test\\MoveToCustomer\\MoveToCustomer-6999994.pt"
+                ]
+            },
+            {
+                "steps": 7259558,
+                "file_path": "config\\test\\MoveToCustomer\\MoveToCustomer-7259558.onnx",
+                "reward": 701.7492868523849,
+                "creation_time": 1740910800.890232,
+                "auxillary_file_paths": [
+                    "config\\test\\MoveToCustomer\\MoveToCustomer-7259558.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7259558,
+            "file_path": "config\\test\\MoveToCustomer.onnx",
+            "reward": 701.7492868523849,
+            "creation_time": 1740910800.890232,
+            "auxillary_file_paths": [
+                "config\\test\\MoveToCustomer\\MoveToCustomer-7259558.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

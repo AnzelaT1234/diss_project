@@ -10,45 +10,63 @@ using Unity.VisualScripting;
 using System.Diagnostics.Tracing;
 using Random=UnityEngine.Random;
 using System.Linq.Expressions;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor;
 
 public class MoveToGoalAgent : Agent
 {
     // [SerializeField] private Transform targetTransform;
     [SerializeField] private Vector3 startPos;
     [SerializeField] private GameObject kitchen;
-    [SerializeField] private MoveToKitchenAgent kitchenAgent;
-    [SerializeField] private BringFoodAgent server;
+    // [SerializeField] private MoveToKitchenAgent kitchenAgent;
+    // [SerializeField] private BringFoodAgent server;
+    [SerializeField] private float moveSpeed = 7.5f;
+    [SerializeField] private float rotateSpeed = 180f;
+    [SerializeField] private CustomerArrival fn;
+    // [SerializeField] private MainGame main;
+    // [Header("X walls")]
+    // [SerializeField] private Transform[] xwalls;
 
-    public GameObject target;
+    // [Header("Z walls")]
+    // [SerializeField] private Transform[] zwalls;
+
+
+    public GameObject table;
     private Transform targetTransform;
 
     private Rigidbody rb;
     private float distance;
-    private Vector3 prevPos;
-    private int step;
-    
+    private bool takingOrder;
+    private bool bringingFood;
+    private Quaternion r;
+    private Transform t;
+    private Vector3 s;
+    private float wallOffset;
+    private float default_offset;
 
 
     public override void Initialize()
     {
         transform.localPosition = startPos;
         rb = GetComponent<Rigidbody>();
-        targetTransform = target.transform;
+        targetTransform = table.transform;
         distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
-        kitchenAgent.gameObject.SetActive(false);
+        // kitchenAgent.gameObject.SetActive(false);
 
-        server.target = target;
-        server.gameObject.SetActive(false);
+        // server.target = target;
+        // server.gameObject.SetActive(false);
 
-        prevPos = startPos;
+        takingOrder = false;
+        bringingFood = false;
+        r = Quaternion.identity;
+        t = table.transform;
+        s = startPos;
     }
-
     public override void OnEpisodeBegin()
     {
         transform.localPosition = startPos;
-        targetTransform = target.transform;
-        transform.rotation = Quaternion.identity;
-        step = 0;
+        targetTransform = t;
+        transform.rotation = r;
     }
 
     IEnumerator Wait(float sec)
@@ -61,132 +79,118 @@ public class MoveToGoalAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(targetTransform.localPosition);
-        sensor.AddObservation(transform.localRotation);
+        // normalise positions such that the values are between 1 and -1
+        // helps with stability in the NN
+        float localx = transform.localPosition.x / 12f;
+        float localz = transform.localPosition.z / 12f;
+
+        // dividing by 360 gives a value between 0 and 1
+        // multiplying by two stretches the values to between 0 and 2 (0 remains 0, 1 goes to 2)
+        // -1f ensures the range is [-1,1]
+        // Note: if we just -1f then the values remain between [-1,0] which we don't want
+        float localRotation = (transform.localRotation.eulerAngles.y / 360f) * 2f - 1f;
+
+        float targetx = targetTransform.localPosition.x / 12f;
+        float targetz = targetTransform.localPosition.z / 12f;
+
+        sensor.AddObservation(localx);
+        sensor.AddObservation(localz);
+        sensor.AddObservation(localRotation);
+        sensor.AddObservation(targetx);
+        sensor.AddObservation(targetz);
 
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        // float moveSpeed = 7.5f;
 
-        float moveSpeed = 5f;
-        int rotation = actions.DiscreteActions[1]; // 0=none, 1=left, 2= right
-        int movement = actions.DiscreteActions[0]; // 0=none, 1=forward
-        int forward;
-        int rot;
+        // // rotation should be a float
+        // float rot = actions.ContinuousActions[0];
 
-        switch (rotation)
-        {
-            case 1:
-            {
-                rot = 1;
-                break;
-            }
-            case 2:
-            {
-                rot = -1;
-                break;
-            }
-            default:
-            {
-                rot = 0;
-                break;
-            }
-        }
+        // // forward is an integer
+        // int forward = actions.DiscreteActions[0]; // 0 for stop, 1 for move
+        // forward = (forward == 2) ? -1 : forward;
+        Move(actions.DiscreteActions[0]);
 
-        // float forward = 0f;
-
-        switch (movement)
-        {
-            case 1:
-            {
-                forward = 1;
-                break;
-            }
-            default:
-            {
-                forward = 0;
-                break;
-            }
-        }
-
-        rb.MovePosition(transform.localPosition + transform.forward * forward * moveSpeed * Time.deltaTime);
-        transform.Rotate(0f, rot * 90 * Time.deltaTime, 0f, Space.Self);
+        // rb.MovePosition(transform.localPosition + transform.forward * forward * moveSpeed * Time.deltaTime);
+        // transform.Rotate(0f, rot * 90 * Time.deltaTime, 0f, Space.Self);
 
         // encourage agent to move towards the goal
-        float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
+        // float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
         // float reward = 1f/curr_distance;
-        if (distance <= curr_distance)
-        {
-            AddReward(-1f);
-        }
-        else
-        {
-            AddReward(1f);
-        }
+        // AddReward(reward);
 
-        // encourage agent by giving positive rewards if they are facing and negative if not
-        float dot = Vector3.Dot(transform.forward, (targetTransform.localPosition - transform.localPosition).normalized);
-        AddReward(dot);
+        // // encourage agent by giving positive rewards if they are facing and negative if not
+        // float dot = Vector3.Dot(transform.forward, (targetTransform.localPosition - transform.localPosition).normalized);
+        // AddReward(dot+1);
 
-        // AddReward(-1*step);
-        // step++;
+        // small punishment for every step
+        // encourages agent to go faster
+        // AddReward(-1/MaxStep);
         
         
     }
 
-    // public override void Heuristic(in ActionBuffers actionsOut)
-    // {
-    //     ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-    //     continuousActions[0] = Input.GetAxisRaw("Horizontal");
-    //     continuousActions[1] = Input.GetAxisRaw("Vertical");
-    // }
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        continuousActions[0] = Input.GetAxis("Horizontal");
 
-    
+        discreteActions[0] = Input.GetKey(KeyCode.UpArrow) ? 1 : 0;//(Input.GetKey(KeyCode.DownArrow) ? 2 : 0);
+    }
+
+    public void Move(int actions)
+    {
+        switch (actions)
+        {
+            case 1:
+            {
+                transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                break;
+            }
+            case 2:
+            {
+                transform.Rotate(0f, rotateSpeed * Time.deltaTime, 0f);
+                break;
+            }
+            case 3:
+            {
+                transform.Rotate(0f, -1*rotateSpeed * Time.deltaTime, 0f);
+                break;
+            }
+        }
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("goal_tag"))
         {
-            Debug.Log("HIT GOAL!");
-            AddReward(10f);
-            // StartCoroutine(Wait(5f));
-            // other.tag = "taking_order";
-
-            // Vector3 tableStart = targetTransform.localPosition;
-            // tableStart.x -= 4.0f; // ensure agents stands next to table not in it
-            // kitchenAgent.startPos = tableStart;
-            // kitchenAgent.gameObject.SetActive(true);
-            // // kitchen.tag = "goal_tag";
-            // kitchenAgent.Initialize();
-            // this.gameObject.SetActive(false);
+            Debug.Log("Hit Goal!");
+            AddReward(1.0f);
             EndEpisode();
-
-
         }
-        else 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("wall_tag"))
         {
-            // Debug.Log("Lose reward!");
-            AddReward(-10f);
-            EndEpisode();
-            // transform.localPosition = startPos;
-            // targetTransform = target.transform;
-            // transform.rotation = Quaternion.identity;
+            Debug.Log("Hit wall");
+            AddReward(-0.5f);
         }
+    }
 
-        // if (other.CompareTag("wall_tag") || other.CompareTag("kit") || other.CompareTag("kit_wall"))
-        // {
-        //     Debug.Log("HIT WALL!");
-        //     AddReward(-1f);
-        //     EndEpisode();
-        // }
-
-        // if (other.CompareTag("table_tag") || other.CompareTag("taking_order"))
-        // {
-        //     Debug.Log("HIT TABLE!");
-        //     AddReward(-0.8f);
-        //     EndEpisode();
-        // }
+    // While agent is still on wall...
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("wall_tag"))
+        {
+            Debug.Log("Staying on wall");
+            AddReward(-0.5f);
+        }
     }
 }

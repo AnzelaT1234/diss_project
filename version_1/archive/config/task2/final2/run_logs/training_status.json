@@ -1,0 +1,38 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499966,
+                "file_path": "config\\task2\\final2\\MoveToCustomer\\MoveToCustomer-499966.onnx",
+                "reward": 17226.847155253094,
+                "creation_time": 1740563814.9875267,
+                "auxillary_file_paths": [
+                    "config\\task2\\final2\\MoveToCustomer\\MoveToCustomer-499966.pt"
+                ]
+            },
+            {
+                "steps": 500030,
+                "file_path": "config\\task2\\final2\\MoveToCustomer\\MoveToCustomer-500030.onnx",
+                "reward": 17226.847155253094,
+                "creation_time": 1740563815.1774654,
+                "auxillary_file_paths": [
+                    "config\\task2\\final2\\MoveToCustomer\\MoveToCustomer-500030.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500030,
+            "file_path": "config\\task2\\final2\\MoveToCustomer.onnx",
+            "reward": 17226.847155253094,
+            "creation_time": 1740563815.1774654,
+            "auxillary_file_paths": [
+                "config\\task2\\final2\\MoveToCustomer\\MoveToCustomer-500030.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

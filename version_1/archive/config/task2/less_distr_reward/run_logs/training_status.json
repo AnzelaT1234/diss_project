@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-499999.onnx",
+                "reward": 660.4061159193516,
+                "creation_time": 1740695006.4675646,
+                "auxillary_file_paths": [
+                    "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-499999.pt"
+                ]
+            },
+            {
+                "steps": 999944,
+                "file_path": "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-999944.onnx",
+                "reward": 1038.200011253357,
+                "creation_time": 1740696368.8304064,
+                "auxillary_file_paths": [
+                    "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-999944.pt"
+                ]
+            },
+            {
+                "steps": 1000008,
+                "file_path": "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-1000008.onnx",
+                "reward": 1038.200011253357,
+                "creation_time": 1740696368.9335556,
+                "auxillary_file_paths": [
+                    "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-1000008.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000008,
+            "file_path": "config\\task2\\less_distr_reward\\MoveToCustomer.onnx",
+            "reward": 1038.200011253357,
+            "creation_time": 1740696368.9335556,
+            "auxillary_file_paths": [
+                "config\\task2\\less_distr_reward\\MoveToCustomer\\MoveToCustomer-1000008.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

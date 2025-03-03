@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499964,
+                "file_path": "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-499964.onnx",
+                "reward": 743.3924076080323,
+                "creation_time": 1740758903.0886457,
+                "auxillary_file_paths": [
+                    "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-499964.pt"
+                ]
+            },
+            {
+                "steps": 999995,
+                "file_path": "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-999995.onnx",
+                "reward": 849.9457893371582,
+                "creation_time": 1740761415.6426873,
+                "auxillary_file_paths": [
+                    "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-999995.pt"
+                ]
+            },
+            {
+                "steps": 1000059,
+                "file_path": "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-1000059.onnx",
+                "reward": 849.9457893371582,
+                "creation_time": 1740761415.7740655,
+                "auxillary_file_paths": [
+                    "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-1000059.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000059,
+            "file_path": "config\\curric\\more_buffer\\MoveToCustomer.onnx",
+            "reward": 849.9457893371582,
+            "creation_time": 1740761415.7740655,
+            "auxillary_file_paths": [
+                "config\\curric\\more_buffer\\MoveToCustomer\\MoveToCustomer-1000059.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

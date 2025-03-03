@@ -1,0 +1,29 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 100899,
+                "file_path": "config\\demo_run1\\MoveToCustomer\\MoveToCustomer-100899.onnx",
+                "reward": 1108.218025977795,
+                "creation_time": 1740911996.131285,
+                "auxillary_file_paths": [
+                    "config\\demo_run1\\MoveToCustomer\\MoveToCustomer-100899.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 100899,
+            "file_path": "config\\demo_run1\\MoveToCustomer.onnx",
+            "reward": 1108.218025977795,
+            "creation_time": 1740911996.131285,
+            "auxillary_file_paths": [
+                "config\\demo_run1\\MoveToCustomer\\MoveToCustomer-100899.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

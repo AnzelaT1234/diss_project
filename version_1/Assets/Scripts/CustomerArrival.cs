@@ -30,7 +30,7 @@ public class CustomerArrival : MonoBehaviour
         mat.material = material;
     }
 
-    void ChooseRandomTable()
+    public void ChooseRandomTable()
     {
         // Remove tag from prev
         GameObject prevTable = tables[prevIndex];
@@ -44,7 +44,7 @@ public class CustomerArrival : MonoBehaviour
         ChangeMat(table, goalMaterial);
 
         prevIndex = tableNo;
-        Agent.target = tables[tableNo];
+        Agent.table = tables[tableNo];
 
     }
 

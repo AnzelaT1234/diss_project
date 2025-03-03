@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1740975787",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\tariq\\Documents\\diss\\diss_env\\Scripts\\mlagents-learn config\\task2\\configuration.yaml --results-dir=config --run-id=good_run_1 --train --force",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1+cu118",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1740975813"
+    },
+    "total": 25.609360000002198,
+    "count": 1,
+    "self": 0.024419000023044646,
+    "children": {
+        "run_training.setup": {
+            "total": 0.7779585999960545,
+            "count": 1,
+            "self": 0.7779585999960545
+        },
+        "TrainerController.start_learning": {
+            "total": 24.8069823999831,
+            "count": 1,
+            "self": 0.001227899978403002,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 24.805726999999024,
+                    "count": 1,
+                    "self": 24.805726999999024
+                },
+                "trainer_threads": {
+                    "total": 3.2999960239976645e-06,
+                    "count": 1,
+                    "self": 3.2999960239976645e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 2.4200009647756815e-05,
+                    "count": 1,
+                    "self": 2.4200009647756815e-05
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499974,
+                "file_path": "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-499974.onnx",
+                "reward": 16147.969701131186,
+                "creation_time": 1740647377.694083,
+                "auxillary_file_paths": [
+                    "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-499974.pt"
+                ]
+            },
+            {
+                "steps": 999958,
+                "file_path": "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-999958.onnx",
+                "reward": null,
+                "creation_time": 1740649323.9405808,
+                "auxillary_file_paths": [
+                    "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-999958.pt"
+                ]
+            },
+            {
+                "steps": 1000022,
+                "file_path": "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-1000022.onnx",
+                "reward": null,
+                "creation_time": 1740649324.0926454,
+                "auxillary_file_paths": [
+                    "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-1000022.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000022,
+            "file_path": "config\\task2\\reduce_hidden_units\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1740649324.0926454,
+            "auxillary_file_paths": [
+                "config\\task2\\reduce_hidden_units\\MoveToCustomer\\MoveToCustomer-1000022.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

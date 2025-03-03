@@ -1,0 +1,65 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 6499970,
+                "file_path": "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-6499970.onnx",
+                "reward": 98.10328746328548,
+                "creation_time": 1740883795.799595,
+                "auxillary_file_paths": [
+                    "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-6499970.pt"
+                ]
+            },
+            {
+                "steps": 6999975,
+                "file_path": "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-6999975.onnx",
+                "reward": 104.68036758899689,
+                "creation_time": 1740884886.7849321,
+                "auxillary_file_paths": [
+                    "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-6999975.pt"
+                ]
+            },
+            {
+                "steps": 7499972,
+                "file_path": "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-7499972.onnx",
+                "reward": 106.00597190856934,
+                "creation_time": 1740885969.8784628,
+                "auxillary_file_paths": [
+                    "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-7499972.pt"
+                ]
+            },
+            {
+                "steps": 7999972,
+                "file_path": "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-7999972.onnx",
+                "reward": 106.30978740345348,
+                "creation_time": 1740887672.4356241,
+                "auxillary_file_paths": [
+                    "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-7999972.pt"
+                ]
+            },
+            {
+                "steps": 8108136,
+                "file_path": "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-8108136.onnx",
+                "reward": 107.2439560699463,
+                "creation_time": 1740888403.1040323,
+                "auxillary_file_paths": [
+                    "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-8108136.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 8108136,
+            "file_path": "config\\even_lower_mstep\\MoveToCustomer.onnx",
+            "reward": 107.2439560699463,
+            "creation_time": 1740888403.1040323,
+            "auxillary_file_paths": [
+                "config\\even_lower_mstep\\MoveToCustomer\\MoveToCustomer-8108136.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}
