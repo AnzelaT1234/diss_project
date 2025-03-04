@@ -42,3 +42,6 @@ Thumbs.db
 # Rider
 .idea/
 *.iml
+
+# archive
+./version_1/archive/
