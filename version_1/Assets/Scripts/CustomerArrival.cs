@@ -10,6 +10,7 @@ public class CustomerArrival : MonoBehaviour
 
     [SerializeField] private Material goalMaterial;
     [SerializeField] private Material invisMaterial;
+    [SerializeField] private Material waitingMaterial;
     [SerializeField] private MoveToGoalAgent Agent;
     private int prevIndex;
     private int noOfTables;
@@ -19,8 +20,18 @@ public class CustomerArrival : MonoBehaviour
         // initialise first index
         prevIndex = 0;
         noOfTables = tables.Length;
+
+        foreach (GameObject table in tables)
+        {
+            ChangeMat(table, invisMaterial);
+        }
+
         ChooseRandomTable();
-        InvokeRepeating(nameof(CheckStatus), 10.0f, 8.0f);
+    }
+
+    void Update()
+    {
+        CheckStatus();
     }
 
     void ChangeMat(GameObject tab, Material material)
@@ -35,13 +46,17 @@ public class CustomerArrival : MonoBehaviour
         // Remove tag from prev
         GameObject prevTable = tables[prevIndex];
         prevTable.tag = "table_tag";
-        ChangeMat(prevTable, invisMaterial);
 
         int tableNo = Random.Range(0,noOfTables);
+        if (prevIndex != tableNo)
+        {
+            ChangeMat(prevTable, invisMaterial);
+        }
+
         Debug.Log("Table No. " + tableNo);
         GameObject table = tables[tableNo];
-        table.tag = "goal_tag";
         ChangeMat(table, goalMaterial);
+        table.tag = "goal_tag";
 
         prevIndex = tableNo;
         Agent.table = tables[tableNo];
@@ -50,9 +65,15 @@ public class CustomerArrival : MonoBehaviour
 
     void CheckStatus()
     {
-        if (tables[prevIndex].tag == "served")
+        GameObject tab = tables[prevIndex];
+        if (tab.tag == "served")
         {
+            ChangeMat(tab, invisMaterial);
             ChooseRandomTable();
+        }
+        else if (tab.tag == "taking_order")
+        {
+            ChangeMat(tab, waitingMaterial);
         }
     }
 }

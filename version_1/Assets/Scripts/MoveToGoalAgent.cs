@@ -54,30 +54,36 @@ public class MoveToGoalAgent : Agent
         transform.localPosition = startPos;
         rb = GetComponent<Rigidbody>();
         targetTransform = table.transform;
-        distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
         // kitchenAgent.gameObject.SetActive(false);
 
         // server.target = target;
         // server.gameObject.SetActive(false);
         _food = transform.Find("plate");
 
-        Transform custTransform = table.transform.Find("goal");
-        customer = custTransform.GetComponent<Renderer>();
-        customer.material = orderingMat;
+        // Transform custTransform = table.transform.Find("goal");
+        // customer = custTransform.GetComponent<Renderer>();
+        // customer.material = orderingMat;
 
-        targetTransform = table.transform;
+        // targetTransform = table.transform;
         successes = 0;
         completedEpisodes = 0;
         score = 0;
     }
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = startPos;
+        // transform.localPosition = startPos;
+
+        // ensures a new random table is chosen in case the episode is over but the agent hasn't served a customer
+        if (table.tag=="taking_order" || table.tag == "goal_tag")
+        {
+            targetTransform.tag = "served";
+        }
+
+        kitchen.tag = "kit";
+        
         targetTransform = table.transform;
         takingOrder = false;
         bringingFood = false;
-        table.tag = "goal_tag";
-        customer.material = orderingMat;
         _food.gameObject.SetActive(false);
 
         Debug.Log("No. of cycles complete: " + successes);
@@ -101,8 +107,8 @@ public class MoveToGoalAgent : Agent
     {
         // normalise positions such that the values are between 1 and -1
         // helps with stability in the NN
-        float localx = transform.localPosition.x / 12f;
-        float localz = transform.localPosition.z / 12f;
+        float localx = transform.localPosition.x / 19f;
+        float localz = transform.localPosition.z / 16f;
 
         // dividing by 360 gives a value between 0 and 1
         // multiplying by two stretches the values to between 0 and 2 (0 remains 0, 1 goes to 2)
@@ -110,9 +116,12 @@ public class MoveToGoalAgent : Agent
         // Note: if we just -1f then the values remain between [-1,0] which we don't want
         float localRotation = (transform.localRotation.eulerAngles.y / 360f) * 2f - 1f;
 
-        float targetx = targetTransform.localPosition.x / 12f;
-        float targetz = targetTransform.localPosition.z / 12f;
+        float targetx = targetTransform.position.x / 19f;
+        float targetz = targetTransform.position.z / 16f;
 
+        float isTakingOrder = takingOrder ? 1.0f : 0.0f;
+
+        sensor.AddObservation(isTakingOrder);
         sensor.AddObservation(localx);
         sensor.AddObservation(localz);
         sensor.AddObservation(localRotation);
@@ -132,14 +141,23 @@ public class MoveToGoalAgent : Agent
         // int forward = actions.DiscreteActions[0]; // 0 for stop, 1 for move
         // forward = (forward == 2) ? -1 : forward;
         Move(actions.DiscreteActions[0]);
+        Quaternion rot = transform.localRotation;
+        rot.x = 0;
+        rot.z=0;
+        // transform.localRotation = rot;
+        
+        Vector3 pos = transform.localPosition;
+        pos.y=0;
+        // transform.localPosition = pos;
+
 
         // rb.MovePosition(transform.localPosition + transform.forward * forward * moveSpeed * Time.deltaTime);
         // transform.Rotate(0f, rot * 90 * Time.deltaTime, 0f, Space.Self);
 
         // encourage agent to move towards the goal
-        // float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
-        // float reward = 1f/curr_distance;
-        // AddReward(reward);
+        float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
+        float reward = 1f/curr_distance;
+        AddReward(reward);
 
         // // encourage agent by giving positive rewards if they are facing and negative if not
         // float dot = Vector3.Dot(transform.forward, (targetTransform.localPosition - transform.localPosition).normalized);
@@ -220,7 +238,7 @@ public class MoveToGoalAgent : Agent
                 _food.gameObject.SetActive(true);
                 // Debug.Log("Got to kitchen");
                 targetTransform = table.transform;
-                table.tag = "goal_tag";
+                targetTransform.tag = "goal_tag";
                 kitchen.tag = "kit";
                 score += 1.0f;
             }
@@ -228,6 +246,7 @@ public class MoveToGoalAgent : Agent
             {
                 AddReward(0.5f);
                 // Debug.Log("Served Customer");
+                table.tag = "served";
                 successes++;
                 score += 1.5f;
                 EndEpisode(); // only end episode when full routine is complete
@@ -237,7 +256,7 @@ public class MoveToGoalAgent : Agent
                 AddReward(0.2f);
                 // Debug.Log("Hit table for first time!");
                 table.tag = "taking_order";
-                customer.material = waitingMat;
+                // customer.material = waitingMat;
                 targetTransform = kitchen.transform;
                 rb.rotation = Quaternion.identity;
                 kitchen.tag = "goal_tag";
@@ -246,12 +265,6 @@ public class MoveToGoalAgent : Agent
 
             }
 
-        }
-        else if (other.CompareTag("taking_order"))
-        {
-            // Debug.Log("Hit Table");
-            AddReward(-0.1f);
-            score -= 0.1f;
         }
     }
 

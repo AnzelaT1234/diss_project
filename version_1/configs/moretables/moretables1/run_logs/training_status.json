@@ -1,0 +1,56 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499971,
+                "file_path": "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-499971.onnx",
+                "reward": -4.071428633161953,
+                "creation_time": 1741130653.1446025,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-499971.pt"
+                ]
+            },
+            {
+                "steps": 999961,
+                "file_path": "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-999961.onnx",
+                "reward": 0.0,
+                "creation_time": 1741147646.6877525,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-999961.pt"
+                ]
+            },
+            {
+                "steps": 1170151,
+                "file_path": "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-1170151.onnx",
+                "reward": null,
+                "creation_time": 1741150037.2612016,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-1170151.pt"
+                ]
+            },
+            {
+                "steps": 0,
+                "file_path": "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-0.onnx",
+                "reward": null,
+                "creation_time": 1741150198.2357795,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "configs\\moretables\\moretables1\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1741150198.2357795,
+            "auxillary_file_paths": [
+                "configs\\moretables\\moretables1\\MoveToCustomer\\MoveToCustomer-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

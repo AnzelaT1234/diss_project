@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499967,
+                "file_path": "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-499967.onnx",
+                "reward": 1216.7600942999125,
+                "creation_time": 1741181583.861256,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-499967.pt"
+                ]
+            },
+            {
+                "steps": 499967,
+                "file_path": "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-499967.onnx",
+                "reward": null,
+                "creation_time": 1741186378.8215275,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-499967.pt"
+                ]
+            },
+            {
+                "steps": 500351,
+                "file_path": "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-500351.onnx",
+                "reward": null,
+                "creation_time": 1741186391.5744512,
+                "auxillary_file_paths": [
+                    "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-500351.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500351,
+            "file_path": "configs\\moretables\\moretables3\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1741186391.5744512,
+            "auxillary_file_paths": [
+                "configs\\moretables\\moretables3\\MoveToCustomer\\MoveToCustomer-500351.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}
