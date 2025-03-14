@@ -3072,18 +3072,22 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 10000
   startPos: {x: 0, y: 0, z: -14.1}
-  kitchen: {fileID: 0}
   moveSpeed: 7.5
   rotateSpeed: 180
-  fn: {fileID: 0}
   waitingMat: {fileID: 2100000, guid: 5de2a0952b55f68489176d69dba69b45, type: 2}
   orderingMat: {fileID: 2100000, guid: 734cc13d6db1e6c4d8d68890f007e91c, type: 2}
+  kitchen: {fileID: 0}
   agentMat: {fileID: -6629797300637803691, guid: dd37ad8ee6586de42a7c431b03df0f82, type: 3}
   ui: {fileID: 0}
   customer: {fileID: 0}
+  fn: {fileID: 0}
+  batteryBar: {fileID: 0}
+  isAlive: 0
+  table: {fileID: 0}
   maxBattery: 1
+  agentNum: 0
 --- !u!114 &8490635147309246199
 MonoBehaviour:
   m_ObjectHideFlags: 0

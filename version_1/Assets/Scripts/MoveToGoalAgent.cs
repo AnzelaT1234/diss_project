@@ -15,6 +15,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor;
 using Unity.Mathematics;
 using UnityEngine.Rendering;
+using UnityEngine.AI;
 
 public class MoveToGoalAgent : Agent
 {
@@ -27,6 +28,7 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private float rotateSpeed = 180f;
     [SerializeField] private Material waitingMat;
     [SerializeField] private Material orderingMat;
+    private String goalTag;
     public GameObject kitchen;
     public Material agentMat;
     public UIAspects ui;
@@ -37,12 +39,11 @@ public class MoveToGoalAgent : Agent
 
     public bool isAlive;
 
-    private GameObject table;
+    public GameObject table;
     private Transform targetTransform;
     private Transform _food;
 
     private Rigidbody rb;
-    private float distance;
     private bool takingOrder;
     private bool bringingFood;
     private int completedEpisodes;
@@ -50,6 +51,7 @@ public class MoveToGoalAgent : Agent
     private float score;
     public float maxBattery = 1.0f;
     public int agentNum;
+    private bool isInit = false;
 
 
     public override void Initialize()
@@ -61,34 +63,55 @@ public class MoveToGoalAgent : Agent
 
         _food = transform.Find("plate");
         batteryBar = transform.Find("batteryLife").Find("battery").GetComponent<Image>();
+        // targetTransform = this.transform;
 
         successes = 0;
         completedEpisodes = 0;
         score = 0;
         isAlive = true;
+        goalTag = "agent" + (agentNum+1).ToString() + "goal";
+
+        isInit = true;
 
         Debug.Log("END OF INITIALISATION");
+    }
+
+    void FixedUpdate()
+    {
+        if (!targetTransform)
+        {
+            targetTransform = table.transform;
+            goalTag = "agent" + (agentNum+1).ToString() + "goal";
+            table.tag = goalTag;
+            customer.transform.Find("status").GetComponent<Renderer>().material = orderingMat;
+            rb = GetComponent<Rigidbody>();
+            // targetTransform = table.transform;
+
+            _food = transform.Find("plate");
+            batteryBar = transform.Find("batteryLife").Find("battery").GetComponent<Image>();
+            // targetTransform = this.transform;
+
+            successes = 0;
+            completedEpisodes = 0;
+            score = 0;
+            isAlive = true;
+            
+        }
     }
     public override void OnEpisodeBegin()
     {
         Debug.Log("BEGINNING EPISODE");
-        // transform.localPosition = startPos;
         rb.rotation = Quaternion.identity;
-        // transform.localPosition = startPos;
-        // ensures a new random table is chosen in case the episode is over but the agent hasn't served a customer
-        // if (table.tag=="taking_order" || table.tag == "goal_tag")
-        // {
-        //     targetTransform.tag = "served";
-        // }
 
         Debug.Log("Getting table...");
-        table = fn.ChooseRandomTable(customer);
+        table = fn.ChooseRandomTable(customer, agentNum);
 
         customer.transform.Find("status").GetComponent<Renderer>().material = orderingMat;
 
         kitchen.tag = "kit";
         
         targetTransform = table.transform;
+        table.tag = goalTag;
         takingOrder = false;
         bringingFood = false;
         _food.gameObject.SetActive(false);
@@ -122,6 +145,11 @@ public class MoveToGoalAgent : Agent
         // -1f ensures the range is [-1,1]
         // Note: if we just -1f then the values remain between [-1,0] which we don't want
         float localRotation = (transform.localRotation.eulerAngles.y / 360f) * 2f - 1f;
+
+        if (!targetTransform)
+        {
+            Debug.Log("NOT TARGET SET!");
+        }
 
         float targetx = targetTransform.position.x / 19f;
         float targetz = targetTransform.position.z / 16f;
@@ -158,7 +186,10 @@ public class MoveToGoalAgent : Agent
 
         // rb.MovePosition(transform.localPosition + transform.forward * forward * moveSpeed * Time.deltaTime);
         // transform.Rotate(0f, rot * 90 * Time.deltaTime, 0f, Space.Self);
-
+        if (!targetTransform)
+        {
+            Debug.Log("NO TARGET!");
+        }
         // encourage agent to move towards the goal
         float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
         float reward = 1f/curr_distance;
@@ -229,32 +260,18 @@ public class MoveToGoalAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("goal_tag"))
+        if (other.CompareTag(goalTag))
         {
-            // Debug.Log("Hit Goal!");
+            Debug.Log("Hit Goal!");
             AddReward(0.5f);
             score += 0.5f;
             
 
-            if (takingOrder) // i.e. goes to kitchen successfully
-            {
-                AddReward(0.3f);
-                takingOrder = false;
-                bringingFood = true;
-
-                // make food appear
-                _food.gameObject.SetActive(true);
-                // Debug.Log("Got to kitchen");
-                targetTransform = table.transform;
-                targetTransform.tag = "goal_tag";
-                kitchen.tag = "kit";
-                score += 1.0f;
-            }
-            else if (bringingFood) // i.e. last step of the routine
+            if (bringingFood) // i.e. last step of the routine
             {
                 AddReward(0.5f);
                 // Debug.Log("Served Customer");
-                table.tag = "served";
+                table.tag = "table_tag";
                 successes++;
                 score += 1.5f;
                 ui.updateMoney(true);
@@ -269,12 +286,30 @@ public class MoveToGoalAgent : Agent
                 table.tag = "taking_order";
                 // customer.material = waitingMat;
                 targetTransform = kitchen.transform;
-                kitchen.tag = "goal_tag";
+                // kitchen.tag = goalTag;
                 takingOrder = true;
                 score += 0.5f;
+                Debug.Log("AGENT " + agentNum + "HIT GOAL!");
 
             }
 
+        }
+
+        else if (other.CompareTag("kit"))
+        {
+            if (takingOrder)
+            {
+                AddReward(0.3f);
+                takingOrder = false;
+                bringingFood = true;
+
+                // make food appear
+                _food.gameObject.SetActive(true);
+                // Debug.Log("Got to kitchen");
+                targetTransform = table.transform;
+                targetTransform.tag = goalTag;
+                score += 1.0f;
+            }
         }
     }
 
@@ -310,6 +345,7 @@ public class MoveToGoalAgent : Agent
             this.gameObject.SetActive(false);
             ui.LowBattery(agentNum);
             isAlive = false;
+            customer.SetActive(false);
         }
     }
 }

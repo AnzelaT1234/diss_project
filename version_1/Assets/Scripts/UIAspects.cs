@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using Random=UnityEngine.Random;
 using Unity.VisualScripting;
 using System;
+using Unity.MLAgents.Policies;
+using Unity.Barracuda;
 
 public class UIAspects : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class UIAspects : MonoBehaviour
     [SerializeField] private Canvas chargeTextParent;
     [SerializeField] private Button[] agentButtons;
     [SerializeField] private Image chargeImage;
-
+    [SerializeField] private NNModel model;
     public bool[] isAgentAlive;
     public bool[] isAgentCharging;
     private MoveToGoalAgent[] agents;
@@ -92,19 +94,28 @@ public class UIAspects : MonoBehaviour
             return;
         }
 
+        Button b = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+
+        NNModel modelCopy = model;
+
         moneySpentOnAgents += 20f;
 
         Debug.Log("Creating agent...");
         MoveToGoalAgent newAgent = Instantiate(agentPrefab).GetComponent<MoveToGoalAgent>();
+        // StartCoroutine(InitializeAgentWithModel(newAgent));/
+        
         Debug.Log("AGENT CREATED!");
         isAgentAlive[agentNo] = true;
         isAgentCharging[agentNo] = false;
+
+        newAgent.GetComponent<BehaviorParameters>().Model = modelCopy;
 
         agentButtons[agentNo].gameObject.SetActive(true);
 
         GameObject customer = Instantiate(customerPrefab);
         customer.transform.SetParent(room.transform);
         InitMat(newAgent, customer);
+        newAgent.table = customerArrival.ChooseRandomTable(customer, agentNo);
         
         newAgent.transform.SetParent(room.transform);
         newAgent.transform.localPosition = startPos;
@@ -136,8 +147,15 @@ public class UIAspects : MonoBehaviour
         Debug.Log("NEW AGENT ADDED: " + agentNo);
         agentNo++; 
         Debug.Log("Done Settings!");
+        StartCoroutine(DisableButton(b));
     }
 
+    private IEnumerator DisableButton(Button button)
+    {
+        button.enabled = false;
+        yield return new WaitForSeconds(10f);
+        button.enabled = true;
+    }
     void fadeMoneyAmount(float amount)
     {
         fadeMoneyText.gameObject.SetActive(true);
@@ -203,12 +221,16 @@ public class UIAspects : MonoBehaviour
         agents[num].transform.localPosition = new Vector3(0f,0f,-14.1f);
         agents[num].batteryBar.fillAmount = 1.0f;
         agents[num].gameObject.SetActive(true);
+        agents[num].customer.SetActive(true);
+        agents[num].EndEpisode(); // ensure new episode starts
+        Debug.Log("AGENT " + num + " HAS RIZZEN");
     }
 
     IEnumerator UpdateChargeCost(float interval, float duration, int num, Image icon)
     {
         float endTime = Time.time + duration;
         isAgentCharging[num] = true;
+        agents[num].customer.SetActive(false);
 
         while (Time.time < endTime)
         {
@@ -241,7 +263,7 @@ public class UIAspects : MonoBehaviour
     {
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         
-        // Debug.Log("Button pressed" + button);
+        Debug.Log("Button pressed: " + button.tag);
 
         String tag = button.tag;
         int agentToCheck;
@@ -257,6 +279,7 @@ public class UIAspects : MonoBehaviour
         {
             agentToCheck = 2;
         }
+        Debug.Log(agentToCheck);
 
         if (isAgentAlive[agentToCheck] || isAgentCharging[agentToCheck])
             {
@@ -265,7 +288,7 @@ public class UIAspects : MonoBehaviour
         else
             {
                 Image icon = placeChargeIcon(button);
-                StartCoroutine(UpdateChargeCost(2f, 10f, 0, icon));
+                StartCoroutine(UpdateChargeCost(2f, 10f, agentToCheck, icon));
                 updateMoney(false);
                 moneySpentOnAgents += 10f;
             }

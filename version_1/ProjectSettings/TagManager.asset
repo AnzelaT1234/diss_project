@@ -10,8 +10,14 @@ TagManager:
   - wall_tag
   - served
   - kit
-  - kit_wall
   - floor
+  - agent1Button
+  - agent2Button
+  - agent3Button
+  - agent1goal
+  - agent2goal
+  - agent3goal
+  - kit_wall
   layers:
   - Default
   - TransparentFX
