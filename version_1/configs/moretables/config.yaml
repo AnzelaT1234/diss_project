@@ -3,7 +3,7 @@ behaviors:
   MoveToCustomer:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 2048
+      batch_size: 512
       buffer_size: 12288
       learning_rate: 0.0003
       beta: 0.005
@@ -20,7 +20,9 @@ behaviors:
       hidden_units: 128
       num_layers: 3
       vis_encode_type: simple
-      memory: null
+      memory:
+        sequence_length: 64
+        memory_size: 256
       goal_conditioning_type: hyper
       deterministic: false
     reward_signals:
@@ -35,9 +37,22 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
+      # curiosity module
+      curiosity:
+        strength: 0.02
+        gamma: 0.99
+        encoding_size: 256
+        learning_rate: 3.0e-4
+
+      # GAIL
       gail:
-        strength: 0.5
-        demo_path: Demos\moretabledemo3.demo
+        strength: 0.01
+        gamma: 0.99
+        encoding_size: 128
+        demo_path: Assets/Demos/v3demo.demo
+        learning_rate: 3.0e-4
+        use_actions: false
+        use_vail: false
     init_path: null
     keep_checkpoints: 5
     even_checkpoints: false
@@ -46,9 +61,13 @@ behaviors:
     summary_freq: 1000
     threaded: false
     self_play: null
-    behavioral_cloning: 
+    behavioral_cloning:
+      demo_path: Assets/Demos/v3demo.demo
       strength: 0.5
-      demo_path: Demos\moretabledemo3.demo
+      steps: 150000
+      batch_size: 512
+      num_epoch: 3
+      samples_per_update: 0
 env_settings:
   env_path: null
   env_args: null

@@ -6,13 +6,11 @@ using UnityEngine;
 public class MainGame : MonoBehaviour
 {
     [SerializeField] private MoveToGoalAgent agent;
-    [SerializeField] private GameObject tutorial;
     public bool isComplete;
 
     [Header("Cameras")]
     [SerializeField] private Camera mainGameCam;
     [SerializeField] private Camera statsCam;
-    private TextMeshPro tutText;
     void Start()
     {
         // agent.gameObject.SetActive(false);
@@ -20,8 +18,10 @@ public class MainGame : MonoBehaviour
 
         mainGameCam.enabled = true;
         statsCam.enabled = false;
-        tutText = tutorial.GetComponentInChildren<TextMeshPro>();
-        tutText.SetText("Press space to add an agent.");
+
+        // Display.displays[1].Activate();
+
+        
 
     }
 
@@ -35,25 +35,18 @@ public class MainGame : MonoBehaviour
             mainGameCam.enabled = false;
         }
     }
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            agent.gameObject.SetActive(true);
+    // void FixedUpdate()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         agent.gameObject.SetActive(true);
 
-        }
-    }
+    //     }
+    // }
 
-    private void Dialogue()
-    {
-        tutText.SetText("This is Bobert.");
-        tutText.SetText("He is an Machine Learning Agent.");
-        tutText.SetText("Press space to add an agent.");
-    }
-
-    public void OnAddButtonClicked()
-    {
-        agent.gameObject.SetActive(true);
-        Debug.Log("ADDED AGENT!");
-    }
+    // public void OnAddButtonClicked()
+    // {
+    //     agent.gameObject.SetActive(true);
+    //     Debug.Log("ADDED AGENT!");
+    // }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -13,29 +14,30 @@ using System.Linq.Expressions;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor;
 using Unity.Mathematics;
+using UnityEngine.Rendering;
 
 public class MoveToGoalAgent : Agent
 {
     // [SerializeField] private Transform targetTransform;
-    [SerializeField] private Vector3 startPos;
-    [SerializeField] private GameObject kitchen;
+    public Vector3 startPos;
+
     // [SerializeField] private MoveToKitchenAgent kitchenAgent;
     // [SerializeField] private BringFoodAgent server;
     [SerializeField] private float moveSpeed = 7.5f;
     [SerializeField] private float rotateSpeed = 180f;
-    [SerializeField] private CustomerArrival fn;
     [SerializeField] private Material waitingMat;
     [SerializeField] private Material orderingMat;
+    public GameObject kitchen;
+    public Material agentMat;
+    public UIAspects ui;
+    public GameObject customer;
+    public CustomerArrival fn;
     
-    // [SerializeField] private MainGame main;
-    // [Header("X walls")]
-    // [SerializeField] private Transform[] xwalls;
+    public Image batteryBar;
 
-    // [Header("Z walls")]
-    // [SerializeField] private Transform[] zwalls;
+    public bool isAlive;
 
-
-    public GameObject table;
+    private GameObject table;
     private Transform targetTransform;
     private Transform _food;
 
@@ -43,41 +45,46 @@ public class MoveToGoalAgent : Agent
     private float distance;
     private bool takingOrder;
     private bool bringingFood;
-    private Renderer customer;
     private int completedEpisodes;
     private int successes;
     private float score;
+    public float maxBattery = 1.0f;
+    public int agentNum;
 
 
     public override void Initialize()
     {
+        Debug.Log("AGENT INITIALISING...");
         transform.localPosition = startPos;
         rb = GetComponent<Rigidbody>();
-        targetTransform = table.transform;
-        // kitchenAgent.gameObject.SetActive(false);
-
-        // server.target = target;
-        // server.gameObject.SetActive(false);
-        _food = transform.Find("plate");
-
-        // Transform custTransform = table.transform.Find("goal");
-        // customer = custTransform.GetComponent<Renderer>();
-        // customer.material = orderingMat;
-
         // targetTransform = table.transform;
+
+        _food = transform.Find("plate");
+        batteryBar = transform.Find("batteryLife").Find("battery").GetComponent<Image>();
+
         successes = 0;
         completedEpisodes = 0;
         score = 0;
+        isAlive = true;
+
+        Debug.Log("END OF INITIALISATION");
     }
     public override void OnEpisodeBegin()
     {
+        Debug.Log("BEGINNING EPISODE");
         // transform.localPosition = startPos;
-
+        rb.rotation = Quaternion.identity;
+        // transform.localPosition = startPos;
         // ensures a new random table is chosen in case the episode is over but the agent hasn't served a customer
-        if (table.tag=="taking_order" || table.tag == "goal_tag")
-        {
-            targetTransform.tag = "served";
-        }
+        // if (table.tag=="taking_order" || table.tag == "goal_tag")
+        // {
+        //     targetTransform.tag = "served";
+        // }
+
+        Debug.Log("Getting table...");
+        table = fn.ChooseRandomTable(customer);
+
+        customer.transform.Find("status").GetComponent<Renderer>().material = orderingMat;
 
         kitchen.tag = "kit";
         
@@ -141,14 +148,12 @@ public class MoveToGoalAgent : Agent
         // int forward = actions.DiscreteActions[0]; // 0 for stop, 1 for move
         // forward = (forward == 2) ? -1 : forward;
         Move(actions.DiscreteActions[0]);
-        Quaternion rot = transform.localRotation;
-        rot.x = 0;
-        rot.z=0;
-        // transform.localRotation = rot;
-        
-        Vector3 pos = transform.localPosition;
-        pos.y=0;
-        // transform.localPosition = pos;
+
+        Quaternion rot = rb.rotation;
+        rb.rotation = Quaternion.Euler(0, rot.eulerAngles.y, 0);
+
+        // ensure agent doesn't rotate around the other axes
+        // transform.rotation = new Quaternion (0, rot.y, 0, 0);
 
 
         // rb.MovePosition(transform.localPosition + transform.forward * forward * moveSpeed * Time.deltaTime);
@@ -158,6 +163,7 @@ public class MoveToGoalAgent : Agent
         float curr_distance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
         float reward = 1f/curr_distance;
         AddReward(reward);
+        score += reward;
 
         // // encourage agent by giving positive rewards if they are facing and negative if not
         // float dot = Vector3.Dot(transform.forward, (targetTransform.localPosition - transform.localPosition).normalized);
@@ -166,6 +172,7 @@ public class MoveToGoalAgent : Agent
         // small punishment for every step
         // encourages agent to go faster
         AddReward(-1/MaxStep);
+        score -= 1/MaxStep;
         
         
     }
@@ -227,6 +234,7 @@ public class MoveToGoalAgent : Agent
             // Debug.Log("Hit Goal!");
             AddReward(0.5f);
             score += 0.5f;
+            
 
             if (takingOrder) // i.e. goes to kitchen successfully
             {
@@ -249,16 +257,18 @@ public class MoveToGoalAgent : Agent
                 table.tag = "served";
                 successes++;
                 score += 1.5f;
+                ui.updateMoney(true);
+                UpdateBatteryLife();
                 EndEpisode(); // only end episode when full routine is complete
             }
             else // i.e. hit table for first time
             {
                 AddReward(0.2f);
+                customer.transform.Find("status").GetComponent<Renderer>().material = waitingMat;
                 // Debug.Log("Hit table for first time!");
                 table.tag = "taking_order";
                 // customer.material = waitingMat;
                 targetTransform = kitchen.transform;
-                rb.rotation = Quaternion.identity;
                 kitchen.tag = "goal_tag";
                 takingOrder = true;
                 score += 0.5f;
@@ -270,11 +280,12 @@ public class MoveToGoalAgent : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("wall_tag"))
+        // Debug.Log("COLLISSION!");
+        if (!collision.gameObject.CompareTag("floor"))
         {
-            // Debug.Log("Hit wall");
-            AddReward(-0.2f);
-            score -= 0.2f;
+            // Debug.Log("Entered Collision");
+            AddReward(-0.3f);
+            score -= 0.3f;
         }
         // Debug.Log("Collision!");
         // AddReward(-0.5f);
@@ -283,11 +294,22 @@ public class MoveToGoalAgent : Agent
     // While agent is still on wall...
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("wall_tag"))
+        if (!collision.gameObject.CompareTag("floor"))
         {
-            // Debug.Log("Staying on wall");
-            AddReward(-0.2f);
-            score -= 0.2f;
+            // Debug.Log("Staying on collision");
+            AddReward(-0.3f);
+            score -= 0.3f;
+        }
+    }
+
+    public void UpdateBatteryLife()
+    {
+        batteryBar.fillAmount -= 0.5f;
+        if (batteryBar.fillAmount <= 0f)
+        {
+            this.gameObject.SetActive(false);
+            ui.LowBattery(agentNum);
+            isAlive = false;
         }
     }
 }

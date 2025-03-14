@@ -11,6 +11,7 @@ TagManager:
   - served
   - kit
   - kit_wall
+  - floor
   layers:
   - Default
   - TransparentFX
