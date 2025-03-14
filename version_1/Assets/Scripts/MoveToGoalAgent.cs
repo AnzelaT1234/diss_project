@@ -28,6 +28,7 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private float rotateSpeed = 180f;
     [SerializeField] private Material waitingMat;
     [SerializeField] private Material orderingMat;
+    public MainGame main;
     private String goalTag;
     public GameObject kitchen;
     public Material agentMat;
@@ -46,17 +47,16 @@ public class MoveToGoalAgent : Agent
     private Rigidbody rb;
     private bool takingOrder;
     private bool bringingFood;
-    private int completedEpisodes;
+    public int completedEpisodes;
     private int successes;
     private float score;
     public float maxBattery = 1.0f;
     public int agentNum;
-    private bool isInit = false;
+
 
 
     public override void Initialize()
     {
-        Debug.Log("AGENT INITIALISING...");
         transform.localPosition = startPos;
         rb = GetComponent<Rigidbody>();
         // targetTransform = table.transform;
@@ -71,14 +71,11 @@ public class MoveToGoalAgent : Agent
         isAlive = true;
         goalTag = "agent" + (agentNum+1).ToString() + "goal";
 
-        isInit = true;
-
-        Debug.Log("END OF INITIALISATION");
     }
 
     void FixedUpdate()
     {
-        if (!targetTransform)
+        if (!targetTransform && !main.closingSoon)
         {
             targetTransform = table.transform;
             goalTag = "agent" + (agentNum+1).ToString() + "goal";
@@ -100,25 +97,33 @@ public class MoveToGoalAgent : Agent
     }
     public override void OnEpisodeBegin()
     {
-        Debug.Log("BEGINNING EPISODE");
         rb.rotation = Quaternion.identity;
 
-        Debug.Log("Getting table...");
-        table = fn.ChooseRandomTable(customer, agentNum);
+        if(batteryBar.fillAmount>0)
+        {
+            isAlive = true;
+        }
 
-        customer.transform.Find("status").GetComponent<Renderer>().material = orderingMat;
+        if (!main.closingSoon)
+        {
+            table = fn.ChooseRandomTable(customer, agentNum);
+            customer.transform.Find("status").GetComponent<Renderer>().material = orderingMat;
+            targetTransform = table.transform;
+            table.tag = goalTag;
+        }
+        else
+        {
+            Destroy(customer);
 
-        kitchen.tag = "kit";
+        }
         
-        targetTransform = table.transform;
-        table.tag = goalTag;
         takingOrder = false;
         bringingFood = false;
         _food.gameObject.SetActive(false);
 
-        Debug.Log("No. of cycles complete: " + successes);
-        Debug.Log("No. of episodes complete: " + completedEpisodes);
-        Debug.Log("Cumulative Reward from last episode: " + score);
+        // Debug.Log("No. of cycles complete: " + successes);
+        // Debug.Log("No. of episodes complete: " + completedEpisodes);
+        // Debug.Log("Cumulative Reward from last episode: " + score);
 
         completedEpisodes++;
         score = 0;
@@ -262,7 +267,7 @@ public class MoveToGoalAgent : Agent
     {
         if (other.CompareTag(goalTag))
         {
-            Debug.Log("Hit Goal!");
+            // Debug.Log("Hit Goal!");
             AddReward(0.5f);
             score += 0.5f;
             
@@ -289,7 +294,6 @@ public class MoveToGoalAgent : Agent
                 // kitchen.tag = goalTag;
                 takingOrder = true;
                 score += 0.5f;
-                Debug.Log("AGENT " + agentNum + "HIT GOAL!");
 
             }
 

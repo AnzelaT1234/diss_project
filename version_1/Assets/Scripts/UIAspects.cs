@@ -29,18 +29,26 @@ public class UIAspects : MonoBehaviour
     [SerializeField] private Button[] agentButtons;
     [SerializeField] private Image chargeImage;
     [SerializeField] private NNModel model;
+    [SerializeField] private MainGame main;
+
+
+    // [SerializeField] public TextMeshProUGUI carbonEmissions;
+    // [SerializeField] public TextMeshProUGUI modelsUsed;
+    // [SerializeField] public TextMeshProUGUI profit;
+    // [SerializeField] public TextMeshProUGUI totalText;
+    // [SerializeField] public TextMeshProUGUI modelMoney;
     public bool[] isAgentAlive;
     public bool[] isAgentCharging;
-    private MoveToGoalAgent[] agents;
+    public MoveToGoalAgent[] agents;
     private int agentNo;
-    private float profit;
-    private float moneySpentOnAgents;
+    public float moneySpentOnAgents;
+    public float total;
 
     void Start()
     {
         fadeMoneyText.gameObject.SetActive(false);
         agentNo = 0;
-        profit = 0f;
+        total = 0f;
         moneySpentOnAgents = 0f;
         isAgentAlive = new bool[3];
         isAgentCharging = new bool[3];
@@ -62,7 +70,6 @@ public class UIAspects : MonoBehaviour
     {
         Vector3 pos = agentButtons[agentNum].transform.localPosition;
         isAgentAlive[agentNum] = false;
-        Debug.Log("AGENT "  + agentNum + "HAS DIED");
 
         TextMeshProUGUI chargeText = Instantiate(clickToChargeTextPrefab).GetComponent<TextMeshProUGUI>();
         chargeText.transform.SetParent(chargeTextParent.transform);
@@ -100,17 +107,16 @@ public class UIAspects : MonoBehaviour
 
         moneySpentOnAgents += 20f;
 
-        Debug.Log("Creating agent...");
         MoveToGoalAgent newAgent = Instantiate(agentPrefab).GetComponent<MoveToGoalAgent>();
         // StartCoroutine(InitializeAgentWithModel(newAgent));/
         
-        Debug.Log("AGENT CREATED!");
         isAgentAlive[agentNo] = true;
         isAgentCharging[agentNo] = false;
 
         newAgent.GetComponent<BehaviorParameters>().Model = modelCopy;
 
         agentButtons[agentNo].gameObject.SetActive(true);
+        newAgent.main = main;
 
         GameObject customer = Instantiate(customerPrefab);
         customer.transform.SetParent(room.transform);
@@ -144,9 +150,7 @@ public class UIAspects : MonoBehaviour
         newAgent.ui = this;
         newAgent.kitchen = kit;
         agents[agentNo] = newAgent;
-        Debug.Log("NEW AGENT ADDED: " + agentNo);
         agentNo++; 
-        Debug.Log("Done Settings!");
         StartCoroutine(DisableButton(b));
     }
 
@@ -203,7 +207,8 @@ public class UIAspects : MonoBehaviour
 
         currAmount+= amountToAdd;
         fadeMoneyAmount(amountToAdd);
-        profit += amountToAdd;
+
+        total += amountToAdd;
 
         if (currAmount<0)
         {
@@ -223,7 +228,6 @@ public class UIAspects : MonoBehaviour
         agents[num].gameObject.SetActive(true);
         agents[num].customer.SetActive(true);
         agents[num].EndEpisode(); // ensure new episode starts
-        Debug.Log("AGENT " + num + " HAS RIZZEN");
     }
 
     IEnumerator UpdateChargeCost(float interval, float duration, int num, Image icon)
@@ -250,9 +254,9 @@ public class UIAspects : MonoBehaviour
     {
         Image charge = Instantiate(chargeImage).gameObject.GetComponent<Image>();
         charge.transform.SetParent(chargeTextParent.transform);
-        charge.transform.localScale = new Vector3(0.1f, 0.075f, 0.1f);
+        charge.transform.localScale = new Vector3(2f, 1.5f, 0.1f);
         Vector3 pos = button.transform.localPosition;
-        pos.y += 1f;
+        pos.y += 5f;
         charge.transform.localPosition = pos;
         charge.transform.localRotation = Quaternion.identity;
         charge.transform.SetParent(chargeTextParent.transform.Find(button.tag));
@@ -262,8 +266,6 @@ public class UIAspects : MonoBehaviour
     public void OnCharge()
     {
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-        
-        Debug.Log("Button pressed: " + button.tag);
 
         String tag = button.tag;
         int agentToCheck;

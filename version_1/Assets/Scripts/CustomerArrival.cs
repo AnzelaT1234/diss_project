@@ -28,11 +28,9 @@ public class CustomerArrival : MonoBehaviour
 
     public GameObject ChooseRandomTable(GameObject customer, int agentNum)
     {
-        Debug.Log("IN CHOOSE RANDOM TABLE");
         int tableNo = Random.Range(0,noOfTables);
         String tag = "agent" + (agentNum+1).ToString() + "goal";
 
-        Debug.Log("Table No. " + tableNo);
         GameObject table = tables[tableNo];
 
         
@@ -44,9 +42,6 @@ public class CustomerArrival : MonoBehaviour
         while (table.tag != "table_tag")
         {
             tableNo = Random.Range(0,noOfTables);
-
-
-            Debug.Log("Table Taken. New table Num: " + tableNo);
             table = tables[tableNo];
             if (table.CompareTag(tag))
             {
