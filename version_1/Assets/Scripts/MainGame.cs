@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainGame : MonoBehaviour
 {
@@ -27,18 +28,7 @@ public class MainGame : MonoBehaviour
     void Start()
     {
         // agent.gameObject.SetActive(false);
-        isComplete = false;
-
-        mainGameCam.enabled = true;
-        statsCam.enabled = false;
-
-        // Display.displays[1].Activate();
-        clock.text = "16:00";
-        minutes = 0f;
-        time = 0f;
-        hours = 16;
-        StartCoroutine(updateTime());
-        closingSoon = false;
+        // SceneManager.LoadScene("TitleScreen");
         // modelMoney = ui.modelMoney;
         // carbonEmissions = ui.carbonEmissions;
         // modelsUsed = ui.modelsUsed;
@@ -143,5 +133,22 @@ public class MainGame : MonoBehaviour
     //     modelMoney.text = "Money Spent on Agents: £" + ui.moneySpentOnAgents.ToString("F2");
 
     // }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("MainGame");
+        isComplete = false;
+
+        mainGameCam.enabled = true;
+        statsCam.enabled = false;
+
+        // Display.displays[1].Activate();
+        clock.text = "16:00";
+        minutes = 0f;
+        time = 0f;
+        hours = 16;
+        StartCoroutine(updateTime());
+        closingSoon = false;
+    }
 
 }
