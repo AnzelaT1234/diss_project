@@ -29,6 +29,7 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private Material waitingMat;
     [SerializeField] private Material orderingMat;
     public MainGame main;
+    private float maxCustomers;
     private String goalTag;
     public GameObject kitchen;
     public Material agentMat;
@@ -59,6 +60,7 @@ public class MoveToGoalAgent : Agent
     {
         transform.localPosition = startPos;
         rb = GetComponent<Rigidbody>();
+        maxCustomers = 4f;
         // targetTransform = table.transform;
 
         _food = transform.Find("plate");
@@ -129,14 +131,6 @@ public class MoveToGoalAgent : Agent
         score = 0;
         
     }
-
-    // IEnumerator Wait(float sec)
-    // {
-    //     Debug.Log("Waiting for " + sec + " seconds...");
-    //     yield return new WaitForSeconds(sec); // Waits for 5 real-time seconds
-    //     Debug.Log(sec + " seconds passed! Now executing...");
-
-    // }
 
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -213,24 +207,24 @@ public class MoveToGoalAgent : Agent
         
     }
 
-    public override void Heuristic(in ActionBuffers actionsOut)
-    {
-        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+    // public override void Heuristic(in ActionBuffers actionsOut)
+    // {
+    //     ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
-        discreteActions[0] = 0;
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            discreteActions[0] = 1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            discreteActions[0] = 2;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            discreteActions[0] = 3;
-        }
-    }
+    //     discreteActions[0] = 0;
+    //     if (Input.GetKey(KeyCode.UpArrow))
+    //     {
+    //         discreteActions[0] = 1;
+    //     }
+    //     else if (Input.GetKey(KeyCode.RightArrow))
+    //     {
+    //         discreteActions[0] = 2;
+    //     }
+    //     else if (Input.GetKey(KeyCode.LeftArrow))
+    //     {
+    //         discreteActions[0] = 3;
+    //     }
+    // }
 
     public void Move(int actions)
     {
@@ -343,7 +337,8 @@ public class MoveToGoalAgent : Agent
 
     public void UpdateBatteryLife()
     {
-        batteryBar.fillAmount -= 0.5f;
+        float loseAmount = 1 / maxCustomers;
+        batteryBar.fillAmount -= loseAmount;
         if (batteryBar.fillAmount <= 0f)
         {
             this.gameObject.SetActive(false);

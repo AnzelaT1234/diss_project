@@ -28,37 +28,50 @@ public class UIAspects : MonoBehaviour
     [SerializeField] private Canvas chargeTextParent;
     [SerializeField] private Button[] agentButtons;
     [SerializeField] private Image chargeImage;
+    [SerializeField] private TextMeshProUGUI lowBatteryIcon; 
     [SerializeField] private NNModel model;
+    [SerializeField] private TextMeshProUGUI addtext;
     [SerializeField] private MainGame main;
-
-
-    // [SerializeField] public TextMeshProUGUI carbonEmissions;
-    // [SerializeField] public TextMeshProUGUI modelsUsed;
-    // [SerializeField] public TextMeshProUGUI profit;
-    // [SerializeField] public TextMeshProUGUI totalText;
-    // [SerializeField] public TextMeshProUGUI modelMoney;
+    public static UIAspects Instance;
     public bool[] isAgentAlive;
     public bool[] isAgentCharging;
     public MoveToGoalAgent[] agents;
-    private int agentNo;
+    public int agentNo;
     public float moneySpentOnAgents;
     public float total;
+
+    private TextMeshProUGUI[] lowbattIcons;
 
     void Start()
     {
         fadeMoneyText.gameObject.SetActive(false);
         agentNo = 0;
-        total = 0f;
+        total = 100f;
         moneySpentOnAgents = 0f;
         isAgentAlive = new bool[3];
         isAgentCharging = new bool[3];
         agents = new MoveToGoalAgent[3];
+        addtext.gameObject.SetActive(true);
+        lowbattIcons = new TextMeshProUGUI[3];
 
         foreach (Button b in agentButtons)
         {
             b.gameObject.SetActive(false);
         }
 
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);  // Keeps this object when changing scenes
+        }
+        else
+        {
+            Destroy(gameObject);  // Prevents duplicates
+        }
     }
 
     void Update()
@@ -72,14 +85,19 @@ public class UIAspects : MonoBehaviour
         isAgentAlive[agentNum] = false;
 
         TextMeshProUGUI chargeText = Instantiate(clickToChargeTextPrefab).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI lowBattIcon = Instantiate(lowBatteryIcon).GetComponent<TextMeshProUGUI>();
+
         chargeText.transform.SetParent(chargeTextParent.transform);
-        Debug.Log(pos);
-        pos.x += 25f;
+        lowBattIcon.transform.SetParent(agentButtons[agentNum].transform);
+        lowBattIcon.transform.localScale = new Vector3(1.8f, 1.4f, 1.8f);
+        lowBattIcon.transform.localPosition = new Vector3(0f, 3f, -0.001f);
+        lowBattIcon.transform.localRotation = Quaternion.identity;
+        lowbattIcons[agentNum] = lowBattIcon;
+        pos.x += 240f;
 
         chargeText.transform.localRotation = Quaternion.identity;
-        Debug.Log(pos);
         chargeText.transform.localPosition = pos;
-        chargeText.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+        chargeText.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         StartCoroutine(FadeText(chargeText));
 
     }
@@ -95,6 +113,15 @@ public class UIAspects : MonoBehaviour
     }
     public void OnAddButtonPressed()
     {
+        if (agentNo==0)
+        {
+            addtext.text = "You can add a new agent (3 agents max) every 10 seconds.";
+        }
+        else
+        {
+            addtext.gameObject.SetActive(false);
+        }
+        
         if (agentNo >= 3)
         {
             Debug.Log("CANT ADD NEW AGENT");
@@ -152,6 +179,7 @@ public class UIAspects : MonoBehaviour
         agents[agentNo] = newAgent;
         agentNo++; 
         StartCoroutine(DisableButton(b));
+        updateMoney(false, -20f);
     }
 
     private IEnumerator DisableButton(Button button)
@@ -239,11 +267,13 @@ public class UIAspects : MonoBehaviour
         while (Time.time < endTime)
         {
             updateMoney(false, -1f);
+            moneySpentOnAgents += 1f;
             yield return new WaitForSeconds(interval);
         }
 
         ReviveAgent(num);
         isAgentCharging[num] = false;
+        isAgentAlive[num] = true;
         Destroy(icon);
 
 
@@ -289,6 +319,7 @@ public class UIAspects : MonoBehaviour
             }
         else
             {
+                Destroy(lowbattIcons[agentToCheck]);
                 Image icon = placeChargeIcon(button);
                 StartCoroutine(UpdateChargeCost(2f, 10f, agentToCheck, icon));
                 updateMoney(false);
