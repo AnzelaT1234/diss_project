@@ -11,7 +11,6 @@ class LinearRegressor(nn.Module):
     def __init__(self):
         super(LinearRegressor, self).__init__()
         self.linear1 = nn.Linear(3, 16)
-        self.relu = nn.ReLU()
         self.leakyrelu = nn.LeakyReLU(negative_slope=0.01)
         self.linear2 = nn.Linear(16,8)
         self.linear3 = nn.Linear(8,1)

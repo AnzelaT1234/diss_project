@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4896171862816086845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7214820058171231808}
+  - component: {fileID: 3143217775145510420}
+  m_Layer: 0
+  m_Name: UIControls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7214820058171231808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896171862816086845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.019091, y: -26.263668, z: -7.8435683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3143217775145510420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896171862816086845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70bc25fc0b7ce074597ee1fec8050eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: {fileID: 0}
+  fadeMoneyText: {fileID: 0}
+  moneySpentAgentText: {fileID: 0}
+  clickToChargeTextPrefab: {fileID: 108418925654185790, guid: a37fdb5a403a95543a8a23fb7b3490b8, type: 3}
+  room: {fileID: 0}
+  agentPrefab: {fileID: 3480740622244994019, guid: 743388818f3de0b45a8f2a42f025c04d, type: 3}
+  customerPrefab: {fileID: 1559856690111028540, guid: e5d96b51d0167d1418cfb5833ccae48e, type: 3}
+  startPos: {x: 0, y: 0, z: -14.1}
+  materials:
+  - {fileID: 2100000, guid: 52a9bb7cde13c1a4ea0d63dd06767ef9, type: 2}
+  - {fileID: 2100000, guid: c642a41b29b7def49804ca90e801972f, type: 2}
+  - {fileID: 2100000, guid: e21b45340ed2f28448132e5a7c18af01, type: 2}
+  customerArrival: {fileID: 0}
+  kit: {fileID: 0}
+  chargeTextParent: {fileID: 0}
+  agentButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  chargeImage: {fileID: 6187276240374126377, guid: 2ea8a97864a047641ac4aa7b9fa756f2, type: 3}
+  lowBatteryIcon: {fileID: 6781483354901332213, guid: 6a670e7f523e7414380a9ffb6bf9ea91, type: 3}
+  model: {fileID: 5022602860645237092, guid: d0c826c9016d0ae4fba6ac7640b126a7, type: 3}
+  addtext: {fileID: 0}
+  main: {fileID: 0}
+  isAgentAlive: 
+  isAgentCharging: 
+  agents: []
+  agentNo: 0
+  moneySpentOnAgents: 0
+  total: 0

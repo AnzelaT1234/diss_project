@@ -44,4 +44,5 @@ Thumbs.db
 *.iml
 
 # archive
-./version_1/archive/
+./main_game/archive/
+./main_game/Demos/
