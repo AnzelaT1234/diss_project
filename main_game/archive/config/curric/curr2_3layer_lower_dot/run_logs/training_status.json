@@ -1,0 +1,41 @@
+{
+    "wall_offset": {
+        "lesson_num": 0
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499957,
+                "file_path": "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer\\MoveToCustomer-499957.onnx",
+                "reward": 1929.8504111766815,
+                "creation_time": 1740747170.477048,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer\\MoveToCustomer-499957.pt"
+                ]
+            },
+            {
+                "steps": 762101,
+                "file_path": "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer\\MoveToCustomer-762101.onnx",
+                "reward": null,
+                "creation_time": 1740747758.2097936,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer\\MoveToCustomer-762101.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 762101,
+            "file_path": "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1740747758.2097936,
+            "auxillary_file_paths": [
+                "config\\curric\\curr2_3layer_lower_dot\\MoveToCustomer\\MoveToCustomer-762101.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

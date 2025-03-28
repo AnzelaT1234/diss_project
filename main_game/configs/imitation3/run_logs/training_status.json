@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499990,
+                "file_path": "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-499990.onnx",
+                "reward": -50.39460019485371,
+                "creation_time": 1741012024.3487601,
+                "auxillary_file_paths": [
+                    "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-499990.pt"
+                ]
+            },
+            {
+                "steps": 999961,
+                "file_path": "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-999961.onnx",
+                "reward": -8.690907987003976,
+                "creation_time": 1741015904.1179223,
+                "auxillary_file_paths": [
+                    "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-999961.pt"
+                ]
+            },
+            {
+                "steps": 1001882,
+                "file_path": "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-1001882.onnx",
+                "reward": -6.142856299167588,
+                "creation_time": 1741015915.9319253,
+                "auxillary_file_paths": [
+                    "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-1001882.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1001882,
+            "file_path": "configs\\imitation3\\MoveToCustomer.onnx",
+            "reward": -6.142856299167588,
+            "creation_time": 1741015915.9319253,
+            "auxillary_file_paths": [
+                "configs\\imitation3\\MoveToCustomer\\MoveToCustomer-1001882.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

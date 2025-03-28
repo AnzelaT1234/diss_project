@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 14701,
+                "file_path": "results\\sequential_test5\\MoveToKitchen\\MoveToKitchen-14701.onnx",
+                "reward": 3169.4905190467834,
+                "creation_time": 1740046347.7540882,
+                "auxillary_file_paths": [
+                    "results\\sequential_test5\\MoveToKitchen\\MoveToKitchen-14701.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 14701,
+            "file_path": "results\\sequential_test5\\MoveToKitchen.onnx",
+            "reward": 3169.4905190467834,
+            "creation_time": 1740046347.7540882,
+            "auxillary_file_paths": [
+                "results\\sequential_test5\\MoveToKitchen\\MoveToKitchen-14701.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 520,
+                "file_path": "results\\sequential_test5\\MoveToCustomer\\MoveToCustomer-520.onnx",
+                "reward": -2846.2340450286865,
+                "creation_time": 1740046347.8796093,
+                "auxillary_file_paths": [
+                    "results\\sequential_test5\\MoveToCustomer\\MoveToCustomer-520.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 520,
+            "file_path": "results\\sequential_test5\\MoveToCustomer.onnx",
+            "reward": -2846.2340450286865,
+            "creation_time": 1740046347.8796093,
+            "auxillary_file_paths": [
+                "results\\sequential_test5\\MoveToCustomer\\MoveToCustomer-520.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 423,
+                "file_path": "results\\train_rot\\MoveToCustomer\\MoveToCustomer-423.onnx",
+                "reward": -14057.30615234375,
+                "creation_time": 1740141376.086894,
+                "auxillary_file_paths": [
+                    "results\\train_rot\\MoveToCustomer\\MoveToCustomer-423.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 423,
+            "file_path": "results\\train_rot\\MoveToCustomer.onnx",
+            "reward": -14057.30615234375,
+            "creation_time": 1740141376.086894,
+            "auxillary_file_paths": [
+                "results\\train_rot\\MoveToCustomer\\MoveToCustomer-423.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 3917,
+                "file_path": "results\\train_rot\\MoveToKitchen\\MoveToKitchen-3917.onnx",
+                "reward": -33488.46072666462,
+                "creation_time": 1740141376.17183,
+                "auxillary_file_paths": [
+                    "results\\train_rot\\MoveToKitchen\\MoveToKitchen-3917.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3917,
+            "file_path": "results\\train_rot\\MoveToKitchen.onnx",
+            "reward": -33488.46072666462,
+            "creation_time": 1740141376.17183,
+            "auxillary_file_paths": [
+                "results\\train_rot\\MoveToKitchen\\MoveToKitchen-3917.pt"
+            ]
+        }
+    },
+    "BringFood": {
+        "checkpoints": [
+            {
+                "steps": 166,
+                "file_path": "results\\train_rot\\BringFood\\BringFood-166.onnx",
+                "reward": -486152.96875,
+                "creation_time": 1740141376.2672372,
+                "auxillary_file_paths": [
+                    "results\\train_rot\\BringFood\\BringFood-166.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 166,
+            "file_path": "results\\train_rot\\BringFood.onnx",
+            "reward": -486152.96875,
+            "creation_time": 1740141376.2672372,
+            "auxillary_file_paths": [
+                "results\\train_rot\\BringFood\\BringFood-166.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

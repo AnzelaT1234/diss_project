@@ -1,0 +1,29 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 32466,
+                "file_path": "results\\test_full_playthrough3\\MoveToKitchen\\MoveToKitchen-32466.onnx",
+                "reward": null,
+                "creation_time": 1740053674.2560785,
+                "auxillary_file_paths": [
+                    "results\\test_full_playthrough3\\MoveToKitchen\\MoveToKitchen-32466.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 32466,
+            "file_path": "results\\test_full_playthrough3\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740053674.2560785,
+            "auxillary_file_paths": [
+                "results\\test_full_playthrough3\\MoveToKitchen\\MoveToKitchen-32466.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

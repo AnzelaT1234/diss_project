@@ -1,0 +1,65 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 1999971,
+                "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-1999971.onnx",
+                "reward": 2632.517455101013,
+                "creation_time": 1740812252.1936615,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-1999971.pt"
+                ]
+            },
+            {
+                "steps": 2499973,
+                "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-2499973.onnx",
+                "reward": 2398.506899436315,
+                "creation_time": 1740813416.7148497,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-2499973.pt"
+                ]
+            },
+            {
+                "steps": 2999997,
+                "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-2999997.onnx",
+                "reward": 2177.4218249320984,
+                "creation_time": 1740814602.924814,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-2999997.pt"
+                ]
+            },
+            {
+                "steps": 3499980,
+                "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-3499980.onnx",
+                "reward": 1793.558685541153,
+                "creation_time": 1740816187.3863988,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-3499980.pt"
+                ]
+            },
+            {
+                "steps": 3716362,
+                "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-3716362.onnx",
+                "reward": 446.51608979701996,
+                "creation_time": 1740817820.3502755,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-3716362.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3716362,
+            "file_path": "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer.onnx",
+            "reward": 446.51608979701996,
+            "creation_time": 1740817820.3502755,
+            "auxillary_file_paths": [
+                "config\\curric\\long_lowerBeta_moreEpoch_moreArea\\MoveToCustomer\\MoveToCustomer-3716362.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

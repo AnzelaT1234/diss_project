@@ -1,0 +1,29 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 106205,
+                "file_path": "config\\task2\\task2_3layers_256units_dep\\MoveToCustomer\\MoveToCustomer-106205.onnx",
+                "reward": -1867.149670600891,
+                "creation_time": 1740502987.1168227,
+                "auxillary_file_paths": [
+                    "config\\task2\\task2_3layers_256units_dep\\MoveToCustomer\\MoveToCustomer-106205.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 106205,
+            "file_path": "config\\task2\\task2_3layers_256units_dep\\MoveToCustomer.onnx",
+            "reward": -1867.149670600891,
+            "creation_time": 1740502987.1168227,
+            "auxillary_file_paths": [
+                "config\\task2\\task2_3layers_256units_dep\\MoveToCustomer\\MoveToCustomer-106205.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

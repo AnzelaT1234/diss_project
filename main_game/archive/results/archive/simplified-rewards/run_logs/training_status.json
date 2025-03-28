@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\simplified-rewards\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740297858.2552574,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\simplified-rewards\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740297858.2552574,
+            "auxillary_file_paths": [
+                "results\\simplified-rewards\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 9485,
+                "file_path": "results\\simplified-rewards\\MoveToCustomer\\MoveToCustomer-9485.onnx",
+                "reward": -4.385775862068965,
+                "creation_time": 1740297858.5310295,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards\\MoveToCustomer\\MoveToCustomer-9485.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9485,
+            "file_path": "results\\simplified-rewards\\MoveToCustomer.onnx",
+            "reward": -4.385775862068965,
+            "creation_time": 1740297858.5310295,
+            "auxillary_file_paths": [
+                "results\\simplified-rewards\\MoveToCustomer\\MoveToCustomer-9485.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

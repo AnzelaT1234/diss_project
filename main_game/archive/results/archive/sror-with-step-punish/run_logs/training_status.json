@@ -1,0 +1,69 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 49978,
+                "file_path": "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-49978.onnx",
+                "reward": -1169651.622049356,
+                "creation_time": 1740309029.440438,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-49978.pt"
+                ]
+            },
+            {
+                "steps": 99941,
+                "file_path": "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-99941.onnx",
+                "reward": -1167840.263460343,
+                "creation_time": 1740309729.3432553,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-99941.pt"
+                ]
+            },
+            {
+                "steps": 149082,
+                "file_path": "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-149082.onnx",
+                "reward": -1110737.5697665168,
+                "creation_time": 1740310464.3255804,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-149082.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 149082,
+            "file_path": "results\\sror-with-step-punish\\MoveToCustomer.onnx",
+            "reward": -1110737.5697665168,
+            "creation_time": 1740310464.3255804,
+            "auxillary_file_paths": [
+                "results\\sror-with-step-punish\\MoveToCustomer\\MoveToCustomer-149082.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\sror-with-step-punish\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740310464.1829374,
+                "auxillary_file_paths": [
+                    "results\\sror-with-step-punish\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\sror-with-step-punish\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740310464.1829374,
+            "auxillary_file_paths": [
+                "results\\sror-with-step-punish\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

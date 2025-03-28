@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "config\\default_config\\default_config_basic_rewards3\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740408543.831785,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards3\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "config\\default_config\\default_config_basic_rewards3\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740408543.831785,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards3\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 41360,
+                "file_path": "config\\default_config\\default_config_basic_rewards3\\MoveToCustomer\\MoveToCustomer-41360.onnx",
+                "reward": 97.93268775939941,
+                "creation_time": 1740408544.0093617,
+                "auxillary_file_paths": [
+                    "config\\default_config\\default_config_basic_rewards3\\MoveToCustomer\\MoveToCustomer-41360.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 41360,
+            "file_path": "config\\default_config\\default_config_basic_rewards3\\MoveToCustomer.onnx",
+            "reward": 97.93268775939941,
+            "creation_time": 1740408544.0093617,
+            "auxillary_file_paths": [
+                "config\\default_config\\default_config_basic_rewards3\\MoveToCustomer\\MoveToCustomer-41360.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "config\\default_config\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740390934.076979,
+                "auxillary_file_paths": [
+                    "config\\default_config\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "config\\default_config\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740390934.076979,
+            "auxillary_file_paths": [
+                "config\\default_config\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 59536,
+                "file_path": "config\\default_config\\MoveToCustomer\\MoveToCustomer-59536.onnx",
+                "reward": 1537.6917155470167,
+                "creation_time": 1740390934.2581515,
+                "auxillary_file_paths": [
+                    "config\\default_config\\MoveToCustomer\\MoveToCustomer-59536.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 59536,
+            "file_path": "config\\default_config\\MoveToCustomer.onnx",
+            "reward": 1537.6917155470167,
+            "creation_time": 1740390934.2581515,
+            "auxillary_file_paths": [
+                "config\\default_config\\MoveToCustomer\\MoveToCustomer-59536.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

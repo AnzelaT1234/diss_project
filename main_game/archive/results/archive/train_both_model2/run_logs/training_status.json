@@ -1,0 +1,73 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 104803,
+                "file_path": "results\\train_both_model2\\MoveToKitchen\\MoveToKitchen-104803.onnx",
+                "reward": null,
+                "creation_time": 1740133657.8031037,
+                "auxillary_file_paths": [
+                    "results\\train_both_model2\\MoveToKitchen\\MoveToKitchen-104803.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 104803,
+            "file_path": "results\\train_both_model2\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740133657.8031037,
+            "auxillary_file_paths": [
+                "results\\train_both_model2\\MoveToKitchen\\MoveToKitchen-104803.pt"
+            ]
+        }
+    },
+    "BringFood": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\train_both_model2\\BringFood\\BringFood-0.onnx",
+                "reward": null,
+                "creation_time": 1740133658.117484,
+                "auxillary_file_paths": [
+                    "results\\train_both_model2\\BringFood\\BringFood-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\train_both_model2\\BringFood.onnx",
+            "reward": null,
+            "creation_time": 1740133658.117484,
+            "auxillary_file_paths": [
+                "results\\train_both_model2\\BringFood\\BringFood-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 104802,
+                "file_path": "results\\train_both_model2\\MoveToCustomer\\MoveToCustomer-104802.onnx",
+                "reward": null,
+                "creation_time": 1740133658.4284225,
+                "auxillary_file_paths": [
+                    "results\\train_both_model2\\MoveToCustomer\\MoveToCustomer-104802.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 104802,
+            "file_path": "results\\train_both_model2\\MoveToCustomer.onnx",
+            "reward": null,
+            "creation_time": 1740133658.4284225,
+            "auxillary_file_paths": [
+                "results\\train_both_model2\\MoveToCustomer\\MoveToCustomer-104802.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

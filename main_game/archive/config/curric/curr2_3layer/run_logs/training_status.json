@@ -1,0 +1,41 @@
+{
+    "wall_offset": {
+        "lesson_num": 0
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499995,
+                "file_path": "config\\curric\\curr2_3layer\\MoveToCustomer\\MoveToCustomer-499995.onnx",
+                "reward": 3361.7274050712585,
+                "creation_time": 1740743382.4395537,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer\\MoveToCustomer\\MoveToCustomer-499995.pt"
+                ]
+            },
+            {
+                "steps": 654715,
+                "file_path": "config\\curric\\curr2_3layer\\MoveToCustomer\\MoveToCustomer-654715.onnx",
+                "reward": 3592.7709255218506,
+                "creation_time": 1740743911.3636832,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer\\MoveToCustomer\\MoveToCustomer-654715.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 654715,
+            "file_path": "config\\curric\\curr2_3layer\\MoveToCustomer.onnx",
+            "reward": 3592.7709255218506,
+            "creation_time": 1740743911.3636832,
+            "auxillary_file_paths": [
+                "config\\curric\\curr2_3layer\\MoveToCustomer\\MoveToCustomer-654715.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

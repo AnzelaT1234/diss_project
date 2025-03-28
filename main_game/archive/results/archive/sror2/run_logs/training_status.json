@@ -1,0 +1,51 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\sror2\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740308278.0515347,
+                "auxillary_file_paths": [
+                    "results\\sror2\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\sror2\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740308278.0515347,
+            "auxillary_file_paths": [
+                "results\\sror2\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 1859,
+                "file_path": "results\\sror2\\MoveToCustomer\\MoveToCustomer-1859.onnx",
+                "reward": 560.2470650672913,
+                "creation_time": 1740308278.2240121,
+                "auxillary_file_paths": [
+                    "results\\sror2\\MoveToCustomer\\MoveToCustomer-1859.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1859,
+            "file_path": "results\\sror2\\MoveToCustomer.onnx",
+            "reward": 560.2470650672913,
+            "creation_time": 1740308278.2240121,
+            "auxillary_file_paths": [
+                "results\\sror2\\MoveToCustomer\\MoveToCustomer-1859.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

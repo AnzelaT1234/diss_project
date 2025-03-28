@@ -1,0 +1,65 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 8499960,
+                "file_path": "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-8499960.onnx",
+                "reward": 2462.0856037139893,
+                "creation_time": 1740792434.034837,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-8499960.pt"
+                ]
+            },
+            {
+                "steps": 8999976,
+                "file_path": "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-8999976.onnx",
+                "reward": 2508.837600708008,
+                "creation_time": 1740793119.1887848,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-8999976.pt"
+                ]
+            },
+            {
+                "steps": 9499943,
+                "file_path": "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-9499943.onnx",
+                "reward": 2641.007482624054,
+                "creation_time": 1740793797.5898888,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-9499943.pt"
+                ]
+            },
+            {
+                "steps": 9999946,
+                "file_path": "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-9999946.onnx",
+                "reward": 2094.9292390346527,
+                "creation_time": 1740794483.2090344,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-9999946.pt"
+                ]
+            },
+            {
+                "steps": 10000010,
+                "file_path": "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-10000010.onnx",
+                "reward": 2094.9292390346527,
+                "creation_time": 1740794483.2393863,
+                "auxillary_file_paths": [
+                    "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-10000010.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000010,
+            "file_path": "config\\curric\\long_run\\MoveToCustomer.onnx",
+            "reward": 2094.9292390346527,
+            "creation_time": 1740794483.2393863,
+            "auxillary_file_paths": [
+                "config\\curric\\long_run\\MoveToCustomer\\MoveToCustomer-10000010.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

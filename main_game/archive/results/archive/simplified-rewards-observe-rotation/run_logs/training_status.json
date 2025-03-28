@@ -1,0 +1,87 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 49967,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-49967.onnx",
+                "reward": 31.365512812644877,
+                "creation_time": 1740299601.2828338,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-49967.pt"
+                ]
+            },
+            {
+                "steps": 99954,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-99954.onnx",
+                "reward": 66.12486177918495,
+                "creation_time": 1740300462.6367443,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-99954.pt"
+                ]
+            },
+            {
+                "steps": 149941,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-149941.onnx",
+                "reward": 83.11872425296022,
+                "creation_time": 1740301273.8886867,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-149941.pt"
+                ]
+            },
+            {
+                "steps": 199947,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-199947.onnx",
+                "reward": 93.10152361997181,
+                "creation_time": 1740302146.3396199,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-199947.pt"
+                ]
+            },
+            {
+                "steps": 238845,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-238845.onnx",
+                "reward": 98.00761882234842,
+                "creation_time": 1740302883.1697128,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-238845.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 238845,
+            "file_path": "results\\simplified-rewards-observe-rotation\\MoveToCustomer.onnx",
+            "reward": 98.00761882234842,
+            "creation_time": 1740302883.1697128,
+            "auxillary_file_paths": [
+                "results\\simplified-rewards-observe-rotation\\MoveToCustomer\\MoveToCustomer-238845.pt"
+            ]
+        }
+    },
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\simplified-rewards-observe-rotation\\MoveToKitchen\\MoveToKitchen-0.onnx",
+                "reward": null,
+                "creation_time": 1740302882.9648316,
+                "auxillary_file_paths": [
+                    "results\\simplified-rewards-observe-rotation\\MoveToKitchen\\MoveToKitchen-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\simplified-rewards-observe-rotation\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740302882.9648316,
+            "auxillary_file_paths": [
+                "results\\simplified-rewards-observe-rotation\\MoveToKitchen\\MoveToKitchen-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

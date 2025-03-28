@@ -1,0 +1,47 @@
+{
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 499975,
+                "file_path": "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-499975.onnx",
+                "reward": 870.1993419783456,
+                "creation_time": 1740751132.5533612,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-499975.pt"
+                ]
+            },
+            {
+                "steps": 999938,
+                "file_path": "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-999938.onnx",
+                "reward": 205.34280854463577,
+                "creation_time": 1740751948.4877174,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-999938.pt"
+                ]
+            },
+            {
+                "steps": 1000002,
+                "file_path": "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-1000002.onnx",
+                "reward": 205.34280854463577,
+                "creation_time": 1740751948.5374022,
+                "auxillary_file_paths": [
+                    "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-1000002.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000002,
+            "file_path": "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer.onnx",
+            "reward": 205.34280854463577,
+            "creation_time": 1740751948.5374022,
+            "auxillary_file_paths": [
+                "config\\curric\\curr2_3layer_smaller_area\\MoveToCustomer\\MoveToCustomer-1000002.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "MoveToKitchen": {
+        "checkpoints": [
+            {
+                "steps": 172512,
+                "file_path": "results\\train_both_model3\\MoveToKitchen\\MoveToKitchen-172512.onnx",
+                "reward": null,
+                "creation_time": 1740138137.7854817,
+                "auxillary_file_paths": [
+                    "results\\train_both_model3\\MoveToKitchen\\MoveToKitchen-172512.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 172512,
+            "file_path": "results\\train_both_model3\\MoveToKitchen.onnx",
+            "reward": null,
+            "creation_time": 1740138137.7854817,
+            "auxillary_file_paths": [
+                "results\\train_both_model3\\MoveToKitchen\\MoveToKitchen-172512.pt"
+            ]
+        }
+    },
+    "MoveToCustomer": {
+        "checkpoints": [
+            {
+                "steps": 172510,
+                "file_path": "results\\train_both_model3\\MoveToCustomer\\MoveToCustomer-172510.onnx",
+                "reward": -305339.3338206212,
+                "creation_time": 1740138137.9135506,
+                "auxillary_file_paths": [
+                    "results\\train_both_model3\\MoveToCustomer\\MoveToCustomer-172510.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 172510,
+            "file_path": "results\\train_both_model3\\MoveToCustomer.onnx",
+            "reward": -305339.3338206212,
+            "creation_time": 1740138137.9135506,
+            "auxillary_file_paths": [
+                "results\\train_both_model3\\MoveToCustomer\\MoveToCustomer-172510.pt"
+            ]
+        }
+    },
+    "BringFood": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\train_both_model3\\BringFood\\BringFood-0.onnx",
+                "reward": null,
+                "creation_time": 1740138138.0171058,
+                "auxillary_file_paths": [
+                    "results\\train_both_model3\\BringFood\\BringFood-0.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\train_both_model3\\BringFood.onnx",
+            "reward": null,
+            "creation_time": 1740138138.0171058,
+            "auxillary_file_paths": [
+                "results\\train_both_model3\\BringFood\\BringFood-0.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu118"
+    }
+}
